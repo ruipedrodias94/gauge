@@ -26,10 +26,6 @@ var Blockchain = class {
             var fabric = require('../fabric/fabric.js');
             this.bcObj = new fabric(path.join(path.dirname(configPath), args.config), configPath);
         }
-        else if (this.bcType === 'sawtooth') {
-            var sawtooth = require('../sawtooth/sawtooth.js')
-            this.bcObj = new sawtooth(path.join(path.dirname(configPath), args.config));
-        } 
         else if (this.bcType === 'quorum') {
             const quorum = require('../quorum/quorum.js')
             this.bcObj = new quorum(path.join(path.dirname(configPath), args.config));

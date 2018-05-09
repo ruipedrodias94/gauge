@@ -31,10 +31,6 @@ var KafkaAdapter = class {
                 const FabricListener = require('./listener-fabric.js');
                 this.bcObj = new FabricListener(this.kafka_config, this.client_kafka, this.producer, configPath);
                 break;
-            case 'sawtooth':
-                const sawtooth = require('./sawtooth/listener-sawtooth.js')
-                this.bcObj = new sawtooth(path.join(path.dirname(configPath), args.config));
-                break;
             case 'quorum':
                 const Quorum = require('./listener-quorum.js')
                 this.bcObj = new Quorum(this.kafka_config, this.client_kafka, this.producer, configPath);
