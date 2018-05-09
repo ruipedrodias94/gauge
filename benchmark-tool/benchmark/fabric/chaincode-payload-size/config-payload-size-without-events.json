@@ -1,0 +1,30 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"MICRO_BENCHMARK",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1], [1,1], [1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"chaincode-payload", "args":[{"fname":"invokewithoutevents"},{"key": "accountno_"}, {"payloadSize": "12121"}]}
+           ],
+				"callback": "benchmark/fabric/chaincode-payload-size/open-payload-size.js"
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}

@@ -1,0 +1,37 @@
+{
+	"blockchain": {
+		"type": "fabric",
+		"config": "./fabric.json"
+	},
+	"test": {
+		"type":"ONE_CHANNEL",
+		"clients": 1,
+		"rounds": [
+			{
+				"cmd": "open",
+				"txNumbAndTps": [
+					[
+						10,
+						10
+					]
+					
+				],
+				"arguments": 
+					 [
+						 {"chaincodeid":"simple1", "args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple2","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple3","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple4","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple5","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, 
+						{"chaincodeid":"simple6","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple7","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple8","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple9","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple10","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}
+					]
+				,
+				"callback": "benchmark/fabric/chaincode-scalability/open-chaincode-scalability.js"
+			}
+												
+		]
+	},
+	"monitor": {
+	  "type": "docker",
+	  "docker":{
+		"name": []
+	  },
+	  "interval": 1
+	}
+}

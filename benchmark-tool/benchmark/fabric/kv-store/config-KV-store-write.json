@@ -1,0 +1,51 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"MICRO_BENCHMARK",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"key-value", "args":[{"fname":"open"},{"key": "accountno_1"},{"value": "1"}]}
+           ],
+				"callback": "benchmark/fabric/kv-store/open-KV-store.js"
+			
+      },
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"key-value", "args":[{"fname":"open"},{"key": "accountno_10"},{"value": "10"}]}
+           ],
+				"callback": "benchmark/fabric/kv-store/open-KV-store.js"
+		
+			},
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"key-value", "args":[{"fname":"open"},{"key": "accountno_99"},{"value": "99"}]}
+           ],
+				"callback": "benchmark/fabric/kv-store/open-KV-store.js"
+		
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}

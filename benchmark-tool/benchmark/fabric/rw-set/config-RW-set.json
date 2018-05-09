@@ -1,0 +1,30 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"MICRO_BENCHMARK",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1], [1,1], [1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"read-write-set", "args":[{"fname":"open"},{"key": "100"}]}
+           ],
+				"callback": "benchmark/fabric/rw-set/open-RW-set.js"
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}

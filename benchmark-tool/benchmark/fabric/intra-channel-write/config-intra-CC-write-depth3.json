@@ -1,0 +1,31 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"MICRO_BENCHMARK",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1], [1,1], [1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"caller1", "args":[{"fname":"open"},{"fname":"open"},{"key": "accountno_"},{"caller2": "caller2"},{"caller3": "called_cc"}, {"value": "1000"}]}
+           ],
+				"callback": "benchmark/fabric/intra-channel-write/open-intra-CC.js"
+
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}

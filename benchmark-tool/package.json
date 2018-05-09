@@ -1,0 +1,57 @@
+{
+  "name": "gauge",
+  "version": "1.0.0",
+  "description": "Performance benchmarking tool",
+  "main": "simple.js",
+  "scripts": {
+    "quorum-test": "echo \"Error: no test specified\" && exit 1",
+    "quorum-open": "node benchmark/quorum/write/simple.js config-quorum-open.json",
+    "quorum-null": "node benchmark/quorum/null/simple.js config-quorum-null.json",
+    "quorum-query": "node benchmark/quorum/read/simple.js config-quorum-query.json",
+    "quorum-mix": "node benchmark/quorum/mix/simple.js config-quorum-mix.json",
+    "quorum-micro-payload": "node benchmark/quorum/transaction-event-payload/simple.js config.json",
+    "quorum-micro-rwset-write": "node benchmark/quorum/read-write-set/simple.js config-write.json",
+    "quorum-micro-rwset-read": "node benchmark/quorum/read-write-set/simple.js config-read.json",
+    "quorum-micro-kv-write": "node benchmark/quorum/key-val-store/simple.js config-write.json",
+    "quorum-micro-kv-read": "node benchmark/quorum/key-val-store/simple.js config-read.json",
+    "quorum-micro-nested-write": "node benchmark/quorum/nested-invocation/simple.js config-write.json",
+    "quorum-micro-nested-read": "node benchmark/quorum/nested-invocation/simple.js config-read.json",
+    "quorum-micro-private": "node benchmark/quorum/private-payload/simple.js config.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/persistentsystems/gauge"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "dockerode": "^2.5.0",
+    "express": "^4.16.2",
+    "fabric-ca-client": "1.0.2",
+    "fabric-client": "1.0.2",
+    "fs-extra": "^5.0.0",
+    "json2csv": "^3.11.5",
+    "jsrsasign": "^8.0.6",
+    "kafka-node": "^2.3.0",
+    "log4js": "^2.5.3",
+    "promise": "^8.0.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.1",
+    "solc": "^0.4.19",
+    "systeminformation": "^3.23.7",
+    "table": "^4.0.1",
+    "tape": "^4.5.1",
+    "tape-promise": "^1.1.0",
+    "web3": "^0.20.0"
+  },
+  "keywords": [
+    "benchmark",
+    "Hyperledger Fabric",
+    "Quorum"
+  ],
+  "author": "persistentsystems",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1"
+  }
+}

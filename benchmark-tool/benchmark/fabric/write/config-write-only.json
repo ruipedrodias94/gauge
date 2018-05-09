@@ -1,0 +1,28 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"ONE_CHANNEL",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[100,10], [100,10], [100,10]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"simple", "args":[{"fname":"open"},{"key": "accountno_"}, {"value": "1000"}]}
+           ],
+				"callback": "benchmark/fabric/write/open-write-only.js"
+      }
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": ["http://localhost:2375/peer0.org1.example.com"]
+    },
+    "interval": 1
+  }
+}

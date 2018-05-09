@@ -1,0 +1,5 @@
+{
+   "broker_urls": "localhost:9092,localhost:7092,localhost:8092",
+    "zk_url": "localhost:2181",
+    "topic": "client-a"
+} 

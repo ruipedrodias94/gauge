@@ -1,0 +1,29 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"ONE_CHANNEL",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "query",
+				"txNumbAndTps": [[100,10], [100,10], [100,10]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"simple", "args":[{"fname":"query"},{"key": "accountno_"}]}
+           ],
+				"callback": "benchmark/fabric/read/query-read-only.js"
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       ]
+    },
+    "interval": 1
+  }
+}

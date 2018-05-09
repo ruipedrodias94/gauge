@@ -1,0 +1,264 @@
+{
+	"fabric": {
+		"cryptodir": "network/fabric/simplenetwork/crypto-config",
+		"network": {
+			"orderer": {
+				"url": "grpc://localhost:7050",
+				"mspid": "OrdererMSP",
+				"msp": "network/fabric/simplenetwork/crypto-config/ordererOrganizations/example.com/msp/",
+				"server-hostname": "orderer.example.com",
+				"tls_cacerts": "network/fabric/simplenetwork/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
+			},
+			"org1": {
+				"name": "peerOrg1",
+				"mspid": "Org1MSP",
+				"msp": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/msp/",
+				"ca": {
+					"url": "http://localhost:7054",
+					"name": "ca-org1"
+				},
+				"peer1": {
+					"requests": "grpc://localhost:7051",
+					"events": "grpc://localhost:7053",
+					"server-hostname": "peer0.org1.example.com",
+					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+				},
+				"peer2": {
+					"requests": "grpc://localhost:7057",
+					"events": "grpc://localhost:7059",
+					"server-hostname": "peer1.org1.example.com",
+					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
+				},"adminCryptoPath": {
+					"certPath":"peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts",
+					"keyPath":"peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore"
+				}
+			},
+			"org2": {
+				"name": "peerOrg2",
+				"mspid": "Org2MSP",
+				"msp": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/msp/",
+				"ca": {
+					"url": "http://localhost:8054",
+					"name": "ca-org2"
+				},
+				"peer1": {
+					"requests": "grpc://localhost:8051",
+					"events": "grpc://localhost:8053",
+					"server-hostname": "peer0.org2.example.com",
+					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+				},
+				"peer2": {
+					"requests": "grpc://localhost:8057",
+					"events": "grpc://localhost:8059",
+					"server-hostname": "peer1.org2.example.com",
+					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
+				},"adminCryptoPath": {
+					"certPath":"peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts",
+					"keyPath":"peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore"
+				}
+			}
+		},
+		"channel": [
+			{
+				"name": "mychannel1",
+				"config": "network/fabric/simplenetwork/mychannel1.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel2",
+				"config": "network/fabric/simplenetwork/mychannel2.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel3",
+				"config": "network/fabric/simplenetwork/mychannel3.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel4",
+				"config": "network/fabric/simplenetwork/mychannel4.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel5",
+				"config": "network/fabric/simplenetwork/mychannel5.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel6",
+				"config": "network/fabric/simplenetwork/mychannel6.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel7",
+				"config": "network/fabric/simplenetwork/mychannel7.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel8",
+				"config": "network/fabric/simplenetwork/mychannel8.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel9",
+				"config": "network/fabric/simplenetwork/mychannel9.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel10",
+				"config": "network/fabric/simplenetwork/mychannel10.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			}
+		],
+		"chaincodes": [
+			{
+				"id": "simple1",
+				"version": "v0",
+				"channel": "mychannel1",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple2",
+				"version": "v0",
+				"channel": "mychannel2",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple3",
+				"version": "v0",
+				"channel": "mychannel3",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple4",
+				"version": "v0",
+				"channel": "mychannel4",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple5",
+				"version": "v0",
+				"channel": "mychannel5",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple6",
+				"version": "v0",
+				"channel": "mychannel6",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple7",
+				"version": "v0",
+				"channel": "mychannel7",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple8",
+				"version": "v0",
+				"channel": "mychannel8",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple9",
+				"version": "v0",
+				"channel": "mychannel9",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "simple10",
+				"version": "v0",
+				"channel": "mychannel10",
+				"path": "contract/fabric/simple"
+			}
+		],
+		"endorsement-policy": {
+			"identities": [
+				{
+					"role": {
+						"name": "member",
+						"mspId": "Org1MSP"
+					}
+				},
+				{
+					"role": {
+						"name": "member",
+						"mspId": "Org2MSP"
+					}
+				},
+				{
+					"role": {
+						"name": "admin",
+						"mspId": "Org1MSP"
+					}
+				}
+			],
+			"policy": {
+				"2-of": [
+					{
+						"signed-by": 0
+					},
+					{
+						"signed-by": 1
+					}
+				]
+			}
+		},
+		"context": {
+			"open": [
+				"mychannel1",
+				"mychannel2",
+				"mychannel3",
+				"mychannel4",
+				"mychannel5",
+				"mychannel6",
+				"mychannel7",
+				"mychannel8",
+				"mychannel9",
+				"mychannel10"
+			],
+			"query": [
+				"mychannel1",
+				"mychannel2",
+				"mychannel3",
+				"mychannel4",
+				"mychannel5",
+				"mychannel6",
+				"mychannel7",
+				"mychannel8",
+				"mychannel9",
+				"mychannel10"
+			]
+		}
+	}
+}

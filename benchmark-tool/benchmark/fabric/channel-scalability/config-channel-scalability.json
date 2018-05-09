@@ -1,0 +1,42 @@
+{
+	"blockchain": {
+		"type": "fabric",
+		"config": "./fabric.json"
+	},
+	"test": {
+		"type":"MULTI_CHANNEL",
+		"clients": 1,
+		"rounds": [
+			{
+				"cmd": "open",
+				"txNumbAndTps": [
+					[
+						10,
+						10
+					]
+				],
+				"arguments":  [
+					{
+					 "chaincodeid":"simple1","channelid":"mychannel1", "args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple2","channelid":"mychannel2","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},
+					 {"chaincodeid":"simple3","channelid":"mychannel3","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple4","channelid":"mychannel4","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, 
+					 {"chaincodeid":"simple5","channelid":"mychannel5","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},
+					 {
+						"chaincodeid":"simple6","channelid":"mychannel6", "args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple7","channelid":"mychannel7","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},
+					 {"chaincodeid":"simple8","channelid":"mychannel8","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple9","channelid":"mychannel9","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, 
+					 {"chaincodeid":"simple10","channelid":"mychannel10","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}				
+					
+					], 
+		
+				"callback": "benchmark/fabric/channel-scalability/open-channel-scalability.js"
+				
+			}
+		]
+	},
+	"monitor": {
+	  "type": "docker",
+	  "docker":{
+		"name": []
+	  },
+	  "interval": 1
+	}
+}

@@ -1,0 +1,30 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"MICRO_BENCHMARK",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[1,1], [1,1], [1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"nested-call-depth2", "args":[{"fname":"open"},{"key": "accountno_"}, {"value": "1000"}]}
+           ],
+				"callback": "benchmark/fabric/single-chaincode-nested-calls/open.js"
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}

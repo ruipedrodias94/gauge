@@ -1,0 +1,30 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"ONE_CHANNEL",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "open",
+				"txNumbAndTps": [[100,10], [100,10], [100,10]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"simple", "args":[{"fname":"donothing"}]}
+           ],
+				"callback": "benchmark/fabric/null/donothing-null-workload.js"
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}

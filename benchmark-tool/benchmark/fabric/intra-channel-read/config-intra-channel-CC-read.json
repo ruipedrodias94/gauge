@@ -1,0 +1,30 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  },
+  "test": {
+    "type":"MICRO_BENCHMARK",
+    "clients": 1,
+    "rounds": [
+      {
+				"cmd": "query",
+				"txNumbAndTps": [[1,1], [1,1], [1,1]],
+				"arguments": 
+					 [
+						 {"chaincodeid":"caller_intra", "args":[{"fname":"query"},{"fname":"query"},{"key": "accountno_"},{"chaincodeid": "called_intra"}]}
+           ],
+				"callback": "benchmark/fabric/intra-channel-read/query-CC.js"
+			}
+      
+    ]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker": {
+      "name": [       
+      ]
+    },
+    "interval": 1
+  }
+}
