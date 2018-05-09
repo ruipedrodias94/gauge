@@ -1,0 +1,22 @@
+{
+    "blockchain": {
+      "type": "quorum",
+      "config": "../quorum.json"
+    },
+    "test": {
+      "clients": 1,
+      "rounds": [{
+          "cmd" : "keyValStore", 
+          "txNumbAndTps" : [[1,1]],
+          "arguments": {  "key": 100000 },
+          "callback" : "benchmark/quorum/key-val-store/open.js"
+        }]
+    },
+    "monitor": {
+      "type": "docker",
+      "docker":{
+        "name": ["http://localhost:2375/docker_node_1_1","http://localhost:2375/docker_node_2_1","http://localhost:2375/docker_node_3_1"]
+      },
+      "interval": 1
+    }
+  }

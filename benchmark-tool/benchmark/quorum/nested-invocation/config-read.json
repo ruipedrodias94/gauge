@@ -1,0 +1,22 @@
+{
+    "blockchain": {
+      "type": "quorum",
+      "config": "../quorum.json"
+    },
+    "test": {
+      "clients": 1,
+      "rounds": [{
+          "cmd" : "nestedInvocation",
+          "txNumbAndTps" : [[1,1]],
+          "arguments": { "accounts": 10 ,"query":true},
+          "callback" : "benchmark/quorum/nested-invocation/query.js"
+        }]
+    },
+    "monitor": {
+      "type": "docker",
+      "docker":{
+        "name": ["http://localhost:2375/docker_node_1_1","http://localhost:2375/docker_node_2_1","http://localhost:2375/docker_node_3_1"]
+      },
+      "interval": 1
+    }
+  }

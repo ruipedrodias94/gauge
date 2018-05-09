@@ -1,0 +1,29 @@
+{
+  "blockchain": {
+    "type": "quorum",
+    "config": "../quorum.json"
+  },
+  "test": {
+    "clients": 1,
+    "rounds": [{
+        "cmd" : "open",
+        "txNumbAndTps" : [[1,1]],
+        "arguments": {  "money": 1000 },
+        "callback" : "benchmark/quorum/mix/open.js",
+        "out" : "accounts"
+      },{
+      
+       "cmd" : "query",
+       "txNumbAndTps" : [[1,1]],
+       "arguments": {  "accounts":  "*#out" },
+       "callback" : "benchmark/quorum/mix/query.js"
+     }]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker":{
+      "name": ["http://localhost:2375/docker_node_1_1","http://localhost:2375/docker_node_2_1","http://localhost:2375/docker_node_3_1"]
+    },
+    "interval": 1
+  }
+}

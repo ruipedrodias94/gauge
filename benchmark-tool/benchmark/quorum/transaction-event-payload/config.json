@@ -1,0 +1,23 @@
+{
+  "blockchain": {
+    "type": "quorum",
+    "config": "../quorum.json",
+    "isEventListener": true
+  },
+  "test": {
+    "clients": 1,
+    "rounds": [{
+        "cmd" : "transactionEventPayload",
+        "txNumbAndTps" : [[1,1]],
+        "arguments": {  "payloadSize": 100 },
+        "callback" : "benchmark/quorum/transaction-event-payload/open.js"
+      }]
+  },
+  "monitor": {
+    "type": "docker",
+    "docker":{
+      "name": ["http://localhost:2375/docker_node_1_1","http://localhost:2375/docker_node_2_1","http://localhost:2375/docker_node_3_1"]
+    },
+    "interval": 1
+  }
+}
