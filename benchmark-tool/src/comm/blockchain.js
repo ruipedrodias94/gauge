@@ -18,20 +18,16 @@ const os = require('os');
 
 var Blockchain = class {
     constructor(configPath) {
-
         var args = require(configPath).blockchain;
         this.bcType = args.type;
         this.bcObj = null;
         if (this.bcType === 'fabric') {
             var fabric = require('../fabric/fabric.js');
             this.bcObj = new fabric(path.join(path.dirname(configPath), args.config), configPath);
-        }
-        else if (this.bcType === 'quorum') {
+        } else if (this.bcType === 'quorum') {
             const quorum = require('../quorum/quorum.js')
             this.bcObj = new quorum(path.join(path.dirname(configPath), args.config));
-        }
-
-        else {
+        } else {
             throw new Error('Unknown blockchain type, ' + this.bcType);
         }
     }
@@ -123,7 +119,7 @@ var Blockchain = class {
     * @return {Promsie}, same format as invokeSmartContract's returning
     */
     queryState(context, contractID, contractVer, key, channelId) {
-        
+
         return this.bcObj.queryState(context, contractID, contractVer, key, channelId);
     }
 
@@ -145,7 +141,7 @@ var Blockchain = class {
     */
     // TODO: should be moved to a dependent 'analyser' module in which to do all result analysing work
     getDefaultTxStats(results) {
-        var fields = ['transaction_id', 'send_time', 'valid_time','c2e', 'e2o', 'o2v', 'delay']
+        var fields = ['transaction_id', 'send_time', 'valid_time', 'c2e', 'e2o', 'o2v', 'delay']
         var c2e, e2o, o2v;
         var result = []
         var succ = 0, fail = 0, delay = 0;
@@ -170,7 +166,7 @@ var Blockchain = class {
                 }
             }
 
-            
+
 
             if (stat.status === 'success') {
                 succ++;
@@ -183,9 +179,9 @@ var Blockchain = class {
                     'transaction_id': stat['id'],
                     'send_time': create,
                     'valid_time': valid,
-                    'c2e':c2e,
-                    'e2o':e2o,
-                    'o2v':o2v,
+                    'c2e': c2e,
+                    'e2o': e2o,
+                    'o2v': o2v,
                     'delay': d
                 }
                 result.push(obj);
@@ -222,7 +218,7 @@ var Blockchain = class {
                 fail++;
             }
         }
-        
+
         var output = '\n\n' + json2csv({ data: result, fields: fields }) + '\n\n';
         fs.appendFileSync(os.hostname() + '_transactions_summary.csv', output);
 
