@@ -1,0 +1,7 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "./fabric.json"
+  }
+  
+}
