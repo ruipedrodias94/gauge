@@ -1,0 +1,11 @@
+{
+    "extends": "google",
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "rules":{
+        "no-tabs": 0,
+        "max-len":0,
+        "prefer-arrow-callback":"warn"
+    }
+}

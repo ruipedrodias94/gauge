@@ -1,0 +1,10 @@
+# Comm directory of benchmark tool
+/benchmark-tool/src/comm
+
+# Network and Contract deployment Fabric scripts
+/deployment-script/fabric
+
+# Fabric files
+/benchmark-tool/benchmark/fabric
+/benchmark-tool/src/fabric
+/benchmark-tool/listener
