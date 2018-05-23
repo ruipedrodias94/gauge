@@ -29,8 +29,8 @@ module.exports.init = function(blockchain, context, args) {
 module.exports.run = function() {
     
     var args = [];
-    init++;
     var newKey = key + init;
+    init++;
     config_arguments[0]["args"][1]["key"] = newKey
     accounts.push(newKey);
     return bc.invokeSmartContract(contx, config_arguments[0]["chaincodeid"], 'v0', config_arguments[0]["args"], 120);
