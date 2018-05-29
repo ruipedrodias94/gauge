@@ -41,9 +41,15 @@ Gauge generates three csv files in the root directory of the experiment folder.
 </table>
 <br>
 For every round in the experiment, the above table will be generated. The file will also contain the final output which will be the average across all the rounds.
-* T0_time is the send time of the first transaction
+- T0_time is the send time of the first transaction.
+- T2_time is the send time of the final transaction
 * T1_time is the cofirmation time of the first transaction
 * Tn_time is the confirmation time of the final transaction.
+* Succ = Total number of transactions succesfully committed.
+* Send_rate = Succ / (T2_time - T0_time)
+* Throughput = Succ / (Tn_time - T1_time)
+* Delay for each transaction (delay) = Confirmation time of the transaction - send time of the transaction
+* Latency = sum of delay for all transactions / Succ
 * ratio = (Tn_time - T0_time) / (Tn_time - T1_time)
 
 
