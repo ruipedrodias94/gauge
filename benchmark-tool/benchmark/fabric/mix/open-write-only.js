@@ -42,6 +42,7 @@ module.exports.run = function() {
     init++;
     console.log(payload[init-1]["args"])
     return bc.invokeSmartContract(contx, payload[init-1]["chaincodeid"], 'v0', payload[init-1]["args"], 120);
+
 }
 
 module.exports.end = function(results) {
