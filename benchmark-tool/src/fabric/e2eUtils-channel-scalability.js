@@ -41,12 +41,43 @@ var tx_id = null;
 var the_user = null;
 var recievedBlocks = [];
 var targets = [];
+var inMemoryChannelObjects = []
+
+var fabricConfigPath = "../../benchmark/fabric/channel-scalability/fabric.json"
 
 function init(config_path) {
+
 	Client.addConfigFile(config_path);
 	ORGS = Client.getConfigSetting('fabric').network;
+	
 }
 module.exports.init = init;
+
+function createChannelObject(){
+
+	var promises = []
+	var channelConfig
+	caliper_util.init(fabricConfigPath);
+	var config = require(fabricConfigPath);
+	var context1 = config.fabric.context;
+	var channelArray = context1['open'];
+	console.log("starting")
+	for (let i = 0; i < channelArray.length; i++) {
+		channelConfig = caliper_util.getChannel(channelArray[i]);
+		promises.push(getcontextInternal(channelConfig));
+		
+	}
+	return Promise.all(promises)
+	.then((object) => {		
+		return Promise.resolve(object);
+	})
+	
+}
+
+module.exports.createChannelObject = createChannelObject;
+
+
+
 
 /*********************
 * @org, key of the organization
@@ -393,7 +424,8 @@ function getOrgPeers(orgName) {
 * @channelConfig {Object}, see the 'channel' definition in fabric's configuration file
 * @return {Promise}, Promise.resolve({org{String}, client{Object}, channel{Object}, submitter{Object}, eventhubs{Array}});
 */
-function getcontext(channelConfig) {
+
+function getcontextInternal(channelConfig) {
 
 	var index = 0;
 	recievedBlocks = [];
@@ -475,6 +507,24 @@ function getcontext(channelConfig) {
 		.catch((err) => {
 			return Promise.reject(err);
 		});
+}
+
+
+function getcontext(channelConfig) {
+	return new Promise(function (resolve, reject) {
+	console.log("get context called")
+	var response;
+	createChannelObject().then((object=>{
+		console.log("exited")
+
+		object.forEach((res)=>{
+		response = res
+		inMemoryChannelObjects[res.channel._name] = res
+	
+	})
+	resolve(response)	
+}))
+})
 }
 module.exports.getcontext = getcontext;
 
@@ -576,6 +626,7 @@ module.exports.releasecontext = releasecontext;
 
 function invokebycontext(context, id, version, args, timeout, channelId) {
 
+	//console.log( inMemoryChannelObjects)
 	var channel, channelConfig
 	var configPath = "../../benchmark/fabric/channel-scalability/fabric.json"
 	caliper_util.init(configPath);
@@ -585,13 +636,14 @@ function invokebycontext(context, id, version, args, timeout, channelId) {
 	var channelArray = context1['open'];
 	channelConfig = caliper_util.getChannel(channelArray[channelPos - 1]);
 
-	return getcontext(channelConfig).then((response) => {
+	//return getcontext(channelConfig).then((response) => {
+		var response = inMemoryChannelObjects[channelId]
 		var channel = response.channel
-		var userOrg = context.org;
-		var client = context.client;
-		var eventhubs = context.eventhubs;
+		var userOrg = response.org;
+		var client = response.client;
+		var eventhubs = response.eventhubs;
 		var time0 = new Date().getTime() / 1000;
-		var tx_id = client.newTransactionID(context.submitter);
+		var tx_id = client.newTransactionID(response.submitter);
 		var invoke_status = {
 			id: tx_id.getTransactionID(),
 			status: 'created',
@@ -674,17 +726,11 @@ function invokebycontext(context, id, version, args, timeout, channelId) {
 			})
 
 			.catch((err) => {
-
-				// return resolved, so we can use promise.all to handle multiple invoking
-				// invoke_status is used to judge the invoking result
-				// logger.error('Invoke chaincode failed, ' + (err.stack?err.stack:err));
-				/*invoke_status.time_valid = process.uptime();
-				invoke_status.status     = 'failed';*/
-
+		
 				logger.error("ERROR:", err)
 				return Promise.resolve(invoke_status);
 			});
-	})
+	//})
 };
 module.exports.invokebycontext = invokebycontext;
 

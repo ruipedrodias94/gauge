@@ -4,39 +4,785 @@
 		"config": "./fabric.json"
 	},
 	"test": {
-		"type":"MULTI_CHANNEL",
+		"type": "MULTI_CHANNEL",
 		"clients": 1,
 		"rounds": [
 			{
 				"cmd": "open",
 				"txNumbAndTps": [
 					[
-						10,
-						10
+						50,
+						50
 					]
 				],
-				"arguments":  [
+				"arguments": [
 					{
-					 "chaincodeid":"simple1","channelid":"mychannel1", "args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple2","channelid":"mychannel2","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},
-					 {"chaincodeid":"simple3","channelid":"mychannel3","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple4","channelid":"mychannel4","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, 
-					 {"chaincodeid":"simple5","channelid":"mychannel5","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},
-					 {
-						"chaincodeid":"simple6","channelid":"mychannel6", "args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, {"chaincodeid":"simple7","channelid":"mychannel7","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},
-					 {"chaincodeid":"simple8","channelid":"mychannel8","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]},{"chaincodeid":"simple9","channelid":"mychannel9","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}, 
-					 {"chaincodeid":"simple10","channelid":"mychannel10","args":[{"verb":"open"},{"account": "newAcc"}, {"money": "initMoney"}]}				
-					
-					], 
-		
+						"chaincodeid": "mychannel101_cc",
+						"channelid": "mychannel101",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel102_cc",
+						"channelid": "mychannel102",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel103_cc",
+						"channelid": "mychannel103",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel104_cc",
+						"channelid": "mychannel104",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel105_cc",
+						"channelid": "mychannel105",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel106_cc",
+						"channelid": "mychannel106",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel107_cc",
+						"channelid": "mychannel107",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel108_cc",
+						"channelid": "mychannel108",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel109_cc",
+						"channelid": "mychannel109",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel110_cc",
+						"channelid": "mychannel110",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel111_cc",
+						"channelid": "mychannel111",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel112_cc",
+						"channelid": "mychannel112",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel113_cc",
+						"channelid": "mychannel113",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel114_cc",
+						"channelid": "mychannel114",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel115_cc",
+						"channelid": "mychannel115",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel116_cc",
+						"channelid": "mychannel116",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel117_cc",
+						"channelid": "mychannel117",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel118_cc",
+						"channelid": "mychannel118",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel119_cc",
+						"channelid": "mychannel119",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel120_cc",
+						"channelid": "mychannel120",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel121_cc",
+						"channelid": "mychannel121",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel122_cc",
+						"channelid": "mychannel122",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel123_cc",
+						"channelid": "mychannel123",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel124_cc",
+						"channelid": "mychannel124",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel125_cc",
+						"channelid": "mychannel125",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel126_cc",
+						"channelid": "mychannel126",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel127_cc",
+						"channelid": "mychannel127",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel128_cc",
+						"channelid": "mychannel128",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel129_cc",
+						"channelid": "mychannel129",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel130_cc",
+						"channelid": "mychannel130",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel131_cc",
+						"channelid": "mychannel131",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel132_cc",
+						"channelid": "mychannel132",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel133_cc",
+						"channelid": "mychannel133",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel134_cc",
+						"channelid": "mychannel134",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel135_cc",
+						"channelid": "mychannel135",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel136_cc",
+						"channelid": "mychannel136",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel137_cc",
+						"channelid": "mychannel137",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel138_cc",
+						"channelid": "mychannel138",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel139_cc",
+						"channelid": "mychannel139",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel140_cc",
+						"channelid": "mychannel140",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel141_cc",
+						"channelid": "mychannel141",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel142_cc",
+						"channelid": "mychannel142",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel143_cc",
+						"channelid": "mychannel143",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel144_cc",
+						"channelid": "mychannel144",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel145_cc",
+						"channelid": "mychannel145",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel146_cc",
+						"channelid": "mychannel146",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel147_cc",
+						"channelid": "mychannel147",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel148_cc",
+						"channelid": "mychannel148",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel149_cc",
+						"channelid": "mychannel149",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					},
+					{
+						"chaincodeid": "mychannel150_cc",
+						"channelid": "mychannel150",
+						"args": [
+							{
+								"verb": "open"
+							},
+							{
+								"account": "newAcc"
+							},
+							{
+								"money": "initMoney"
+							}
+						]
+					}
+				],
 				"callback": "benchmark/fabric/channel-scalability/open-channel-scalability.js"
-				
 			}
 		]
 	},
 	"monitor": {
-	  "type": "docker",
-	  "docker":{
-		"name": []
-	  },
-	  "interval": 1
+		"type": "docker",
+		"docker": {
+			"name": [
+				"http://10.244.5.43:2375/orderer1.example.com",
+				"http://10.244.5.43:2375/orderer0.example.com",
+				"http://10.244.5.45:2375/peer1.org2.example.com",
+				"http://10.244.5.44:2375/peer1.org1.example.com",
+				"http://10.244.5.42:2375/peer0.org2.example.com",
+				"http://10.244.5.41:2375/peer0.org1.example.com"
+			]
+		},
+		"interval": 1
 	}
 }

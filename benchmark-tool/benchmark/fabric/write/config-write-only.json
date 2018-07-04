@@ -12,7 +12,7 @@
 				"txNumbAndTps": [[100,10], [100,10], [100,10]],
 				"arguments": 
 					 [
-						 {"chaincodeid":"simple", "args":[{"fname":"open"},{"key": "accountno_"}, {"value": "1000"}]}
+             {"chaincodeid":"simple", "args":[{"fname":"open"},{"key": "accountno_"}, {"value": "1000"}]}
            ],
 				"callback": "benchmark/fabric/write/open-write-only.js"
       }

@@ -61,7 +61,7 @@ function doTest(msg) {
                     idx++;
                     return rateControl(sleepTime, start, idx);
                 });
-            }, cb.init(blockchain, context, msg.args))
+            }, cb.init(blockchain, context, msg.args, rounds.length))
                 .then(() => {
                     return Promise.all(promises);
                 })

@@ -28,9 +28,9 @@ class Fabric extends BlockchainInterface {
         util.init(this.configPath);
         e2eUtils.init(this.configPath);
 
-        return impl_create.run(this.configPath).then(() => {
+     return impl_create.run(this.configPath).then(() => {
             return impl_join.run(this.configPath)
-        })
+       })
             .catch((err) => {
                 logger.error('fabric.init() failed, ' + (err.stack ? err.stack : err));
                 return Promise.reject(err);

@@ -27,7 +27,7 @@ module.exports.init = function(blockchain, context, args) {
 
 module.exports.run = function(iteration) {
     
-    return bc.invokeSmartContract(contx,  config_arguments[iteration-1]["chaincodeid"], 'v0', config_arguments[iteration-1]["args"], 120,config_arguments[iteration-1]["channelid"]);
+    return bc.invokeSmartContract(contx,  config_arguments[iteration-1]["chaincodeid"], 'v0', config_arguments[iteration-1]["args"], 120, config_arguments[iteration-1]["channelid"]);
 }
 
 module.exports.end = function(results) {

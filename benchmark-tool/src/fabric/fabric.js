@@ -19,8 +19,9 @@ class Fabric extends BlockchainInterface {
 
         // for channel scalability
         if (require(exptType).test.type == "MULTI_CHANNEL") {
+           
             e2eUtils = require('./e2eUtils-channel-scalability.js');
-
+        
         }
         // for non channel scalability
         else {
@@ -33,10 +34,12 @@ class Fabric extends BlockchainInterface {
 
     init() {
         util.init(this.configPath);
-        e2eUtils.init(this.configPath);
+         e2eUtils.init(this.configPath);
+        
+
         return new Promise(function (resolve, reject) {
             return resolve();
-        })
+       })
 
     }
 

@@ -9,31 +9,42 @@
 */
 
 'use strict'
-
+var RandomPayloadGenerator = require('../../../src/fabric/RandomPayloadGenerator.js')
+var SequentialPayloadGenerator = require('../../../src/fabric/SequentialPayloadGenerator.js')
 module.exports.info  = "opening accounts";
 
 var bc, contx;
 var init = 0;
 var config_arguments;
 var key;
-module.exports.init = function(blockchain, context, args) {
+var payload;
+
+module.exports.init = function(blockchain, context, args, counter) {
+
+    // If args lenght is > 1, then its assumed that there are no static paylaods. 
+    // else read the payload and pass to each txn.
+    if (args.length == 1){
+        var generator = new RandomPayloadGenerator(args)
+        payload = generator.generate(counter)
+    }
+
+    else {
+        payload = args
+    }
     
-    config_arguments = args;
-    key = config_arguments[0]["args"][1]["key"]
     bc = blockchain;
     contx = context;
     return Promise.resolve();
 }
 
 module.exports.run = function() {
-    
-    var args = [];
-    var newKey = key + init;
+
     init++;
-    config_arguments[0]["args"][1]["key"] = newKey
-    return bc.invokeSmartContract(contx, config_arguments[0]["chaincodeid"], 'v0', config_arguments[0]["args"], 120);
+    console.log(payload[init-1]["args"])
+    return bc.invokeSmartContract(contx, payload[init-1]["chaincodeid"], 'v0', payload[init-1]["args"], 120);
 }
 
 module.exports.end = function(results) {
     return Promise.resolve();
 }
+

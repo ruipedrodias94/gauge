@@ -103,7 +103,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, args []string)
 	if money == nil {
 		return shim.Error(ERROR_ACCOUT_ABNORMAL)
 	}
-
+	
 	return shim.Success(money)
 }
 

@@ -28,9 +28,10 @@
 					"events": "grpc://localhost:7059",
 					"server-hostname": "peer1.org1.example.com",
 					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
-				},"adminCryptoPath": {
-					"certPath":"peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts",
-					"keyPath":"peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore"
+				},
+				"adminCryptoPath": {
+					"certPath": "peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts",
+					"keyPath": "peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore"
 				}
 			},
 			"org2": {
@@ -52,88 +53,409 @@
 					"events": "grpc://localhost:8059",
 					"server-hostname": "peer1.org2.example.com",
 					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
-				},"adminCryptoPath": {
-					"certPath":"peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts",
-					"keyPath":"peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore"
+				},
+				"adminCryptoPath": {
+					"certPath": "peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts",
+					"keyPath": "peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore"
 				}
 			}
 		},
 		"channel": [
 			{
-				"name": "mychannel1",
-				"config": "network/fabric/simplenetwork/mychannel1.tx",
+				"name": "mychannel101",
+				"config": "network/fabric/simplenetwork/mychannel101.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel2",
-				"config": "network/fabric/simplenetwork/mychannel2.tx",
+				"name": "mychannel102",
+				"config": "network/fabric/simplenetwork/mychannel102.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel3",
-				"config": "network/fabric/simplenetwork/mychannel3.tx",
+				"name": "mychannel103",
+				"config": "network/fabric/simplenetwork/mychannel103.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel4",
-				"config": "network/fabric/simplenetwork/mychannel4.tx",
+				"name": "mychannel104",
+				"config": "network/fabric/simplenetwork/mychannel104.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel5",
-				"config": "network/fabric/simplenetwork/mychannel5.tx",
+				"name": "mychannel105",
+				"config": "network/fabric/simplenetwork/mychannel105.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel6",
-				"config": "network/fabric/simplenetwork/mychannel6.tx",
+				"name": "mychannel106",
+				"config": "network/fabric/simplenetwork/mychannel106.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel7",
-				"config": "network/fabric/simplenetwork/mychannel7.tx",
+				"name": "mychannel107",
+				"config": "network/fabric/simplenetwork/mychannel107.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel8",
-				"config": "network/fabric/simplenetwork/mychannel8.tx",
+				"name": "mychannel108",
+				"config": "network/fabric/simplenetwork/mychannel108.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel9",
-				"config": "network/fabric/simplenetwork/mychannel9.tx",
+				"name": "mychannel109",
+				"config": "network/fabric/simplenetwork/mychannel109.tx",
 				"organizations": [
 					"org1",
 					"org2"
 				]
 			},
 			{
-				"name": "mychannel10",
-				"config": "network/fabric/simplenetwork/mychannel10.tx",
+				"name": "mychannel110",
+				"config": "network/fabric/simplenetwork/mychannel110.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel111",
+				"config": "network/fabric/simplenetwork/mychannel111.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel112",
+				"config": "network/fabric/simplenetwork/mychannel112.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel113",
+				"config": "network/fabric/simplenetwork/mychannel113.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel114",
+				"config": "network/fabric/simplenetwork/mychannel114.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel115",
+				"config": "network/fabric/simplenetwork/mychannel115.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel116",
+				"config": "network/fabric/simplenetwork/mychannel116.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel117",
+				"config": "network/fabric/simplenetwork/mychannel117.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel118",
+				"config": "network/fabric/simplenetwork/mychannel118.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel119",
+				"config": "network/fabric/simplenetwork/mychannel119.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel120",
+				"config": "network/fabric/simplenetwork/mychannel120.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel121",
+				"config": "network/fabric/simplenetwork/mychannel121.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel122",
+				"config": "network/fabric/simplenetwork/mychannel122.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel123",
+				"config": "network/fabric/simplenetwork/mychannel123.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel124",
+				"config": "network/fabric/simplenetwork/mychannel124.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel125",
+				"config": "network/fabric/simplenetwork/mychannel125.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel126",
+				"config": "network/fabric/simplenetwork/mychannel126.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel127",
+				"config": "network/fabric/simplenetwork/mychannel127.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel128",
+				"config": "network/fabric/simplenetwork/mychannel128.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel129",
+				"config": "network/fabric/simplenetwork/mychannel129.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel130",
+				"config": "network/fabric/simplenetwork/mychannel130.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel131",
+				"config": "network/fabric/simplenetwork/mychannel131.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel132",
+				"config": "network/fabric/simplenetwork/mychannel132.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel133",
+				"config": "network/fabric/simplenetwork/mychannel133.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel134",
+				"config": "network/fabric/simplenetwork/mychannel134.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel135",
+				"config": "network/fabric/simplenetwork/mychannel135.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel136",
+				"config": "network/fabric/simplenetwork/mychannel136.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel137",
+				"config": "network/fabric/simplenetwork/mychannel137.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel138",
+				"config": "network/fabric/simplenetwork/mychannel138.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel139",
+				"config": "network/fabric/simplenetwork/mychannel139.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel140",
+				"config": "network/fabric/simplenetwork/mychannel140.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel141",
+				"config": "network/fabric/simplenetwork/mychannel141.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel142",
+				"config": "network/fabric/simplenetwork/mychannel142.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel143",
+				"config": "network/fabric/simplenetwork/mychannel143.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel144",
+				"config": "network/fabric/simplenetwork/mychannel144.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel145",
+				"config": "network/fabric/simplenetwork/mychannel145.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel146",
+				"config": "network/fabric/simplenetwork/mychannel146.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel147",
+				"config": "network/fabric/simplenetwork/mychannel147.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel148",
+				"config": "network/fabric/simplenetwork/mychannel148.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel149",
+				"config": "network/fabric/simplenetwork/mychannel149.tx",
+				"organizations": [
+					"org1",
+					"org2"
+				]
+			},
+			{
+				"name": "mychannel150",
+				"config": "network/fabric/simplenetwork/mychannel150.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -142,63 +464,303 @@
 		],
 		"chaincodes": [
 			{
-				"id": "simple1",
+				"id": "mychannel101_cc",
 				"version": "v0",
-				"channel": "mychannel1",
+				"channel": "mychannel101",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple2",
+				"id": "mychannel102_cc",
 				"version": "v0",
-				"channel": "mychannel2",
+				"channel": "mychannel102",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple3",
+				"id": "mychannel103_cc",
 				"version": "v0",
-				"channel": "mychannel3",
+				"channel": "mychannel103",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple4",
+				"id": "mychannel104_cc",
 				"version": "v0",
-				"channel": "mychannel4",
+				"channel": "mychannel104",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple5",
+				"id": "mychannel105_cc",
 				"version": "v0",
-				"channel": "mychannel5",
+				"channel": "mychannel105",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple6",
+				"id": "mychannel106_cc",
 				"version": "v0",
-				"channel": "mychannel6",
+				"channel": "mychannel106",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple7",
+				"id": "mychannel107_cc",
 				"version": "v0",
-				"channel": "mychannel7",
+				"channel": "mychannel107",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple8",
+				"id": "mychannel108_cc",
 				"version": "v0",
-				"channel": "mychannel8",
+				"channel": "mychannel108",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple9",
+				"id": "mychannel109_cc",
 				"version": "v0",
-				"channel": "mychannel9",
+				"channel": "mychannel109",
 				"path": "contract/fabric/simple"
 			},
 			{
-				"id": "simple10",
+				"id": "mychannel110_cc",
 				"version": "v0",
-				"channel": "mychannel10",
+				"channel": "mychannel110",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel111_cc",
+				"version": "v0",
+				"channel": "mychannel111",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel112_cc",
+				"version": "v0",
+				"channel": "mychannel112",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel113_cc",
+				"version": "v0",
+				"channel": "mychannel113",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel114_cc",
+				"version": "v0",
+				"channel": "mychannel114",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel115_cc",
+				"version": "v0",
+				"channel": "mychannel115",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel116_cc",
+				"version": "v0",
+				"channel": "mychannel116",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel117_cc",
+				"version": "v0",
+				"channel": "mychannel117",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel118_cc",
+				"version": "v0",
+				"channel": "mychannel118",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel119_cc",
+				"version": "v0",
+				"channel": "mychannel119",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel120_cc",
+				"version": "v0",
+				"channel": "mychannel120",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel121_cc",
+				"version": "v0",
+				"channel": "mychannel121",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel122_cc",
+				"version": "v0",
+				"channel": "mychannel122",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel123_cc",
+				"version": "v0",
+				"channel": "mychannel123",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel124_cc",
+				"version": "v0",
+				"channel": "mychannel124",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel125_cc",
+				"version": "v0",
+				"channel": "mychannel125",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel126_cc",
+				"version": "v0",
+				"channel": "mychannel126",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel127_cc",
+				"version": "v0",
+				"channel": "mychannel127",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel128_cc",
+				"version": "v0",
+				"channel": "mychannel128",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel129_cc",
+				"version": "v0",
+				"channel": "mychannel129",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel130_cc",
+				"version": "v0",
+				"channel": "mychannel130",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel131_cc",
+				"version": "v0",
+				"channel": "mychannel131",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel132_cc",
+				"version": "v0",
+				"channel": "mychannel132",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel133_cc",
+				"version": "v0",
+				"channel": "mychannel133",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel134_cc",
+				"version": "v0",
+				"channel": "mychannel134",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel135_cc",
+				"version": "v0",
+				"channel": "mychannel135",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel136_cc",
+				"version": "v0",
+				"channel": "mychannel136",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel137_cc",
+				"version": "v0",
+				"channel": "mychannel137",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel138_cc",
+				"version": "v0",
+				"channel": "mychannel138",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel139_cc",
+				"version": "v0",
+				"channel": "mychannel139",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel140_cc",
+				"version": "v0",
+				"channel": "mychannel140",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel141_cc",
+				"version": "v0",
+				"channel": "mychannel141",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel142_cc",
+				"version": "v0",
+				"channel": "mychannel142",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel143_cc",
+				"version": "v0",
+				"channel": "mychannel143",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel144_cc",
+				"version": "v0",
+				"channel": "mychannel144",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel145_cc",
+				"version": "v0",
+				"channel": "mychannel145",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel146_cc",
+				"version": "v0",
+				"channel": "mychannel146",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel147_cc",
+				"version": "v0",
+				"channel": "mychannel147",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel148_cc",
+				"version": "v0",
+				"channel": "mychannel148",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel149_cc",
+				"version": "v0",
+				"channel": "mychannel149",
+				"path": "contract/fabric/simple"
+			},
+			{
+				"id": "mychannel150_cc",
+				"version": "v0",
+				"channel": "mychannel150",
 				"path": "contract/fabric/simple"
 			}
 		],
@@ -236,28 +798,60 @@
 		},
 		"context": {
 			"open": [
-				"mychannel1",
-				"mychannel2",
-				"mychannel3",
-				"mychannel4",
-				"mychannel5",
-				"mychannel6",
-				"mychannel7",
-				"mychannel8",
-				"mychannel9",
-				"mychannel10"
+				
+				"mychannel101",
+				"mychannel102",
+				"mychannel103",
+				"mychannel104",
+				"mychannel105",
+				"mychannel106",
+				"mychannel107",
+				"mychannel108",
+				"mychannel109",
+				"mychannel110",
+				"mychannel111",
+				"mychannel112",
+				"mychannel113",
+				"mychannel114",
+				"mychannel115",
+				"mychannel116",
+				"mychannel117",
+				"mychannel118",
+				"mychannel119",
+				"mychannel120",
+				"mychannel121",
+				"mychannel122",
+				"mychannel123",
+				"mychannel124",
+				"mychannel125",
+				"mychannel126",
+				"mychannel127",
+				"mychannel128",
+				"mychannel129",
+				"mychannel130",
+				"mychannel131",
+				"mychannel132",
+				"mychannel133",
+				"mychannel134",
+				"mychannel135",
+				"mychannel136",
+				"mychannel137",
+				"mychannel138",
+				"mychannel139",
+				"mychannel140",
+				"mychannel141",
+				"mychannel142",
+				"mychannel143",
+				"mychannel144",
+				"mychannel145",
+				"mychannel146",
+				"mychannel147",
+				"mychannel148",
+				"mychannel149",
+				"mychannel150"
 			],
 			"query": [
-				"mychannel1",
-				"mychannel2",
-				"mychannel3",
-				"mychannel4",
-				"mychannel5",
-				"mychannel6",
-				"mychannel7",
-				"mychannel8",
-				"mychannel9",
-				"mychannel10"
+				"mychannel"
 			]
 		}
 	}
