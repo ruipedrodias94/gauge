@@ -512,19 +512,16 @@ function getcontextInternal(channelConfig) {
 
 function getcontext(channelConfig) {
 	return new Promise(function (resolve, reject) {
-	console.log("get context called")
 	var response;
-	createChannelObject().then((object=>{
-		console.log("exited")
-
-		object.forEach((res)=>{
-		response = res
-		inMemoryChannelObjects[res.channel._name] = res
-	
-	})
-	resolve(response)	
-}))
-})
+		createChannelObject().then((object=>{
+			object.forEach((res)=>{
+			response = res
+			inMemoryChannelObjects[res.channel._name] = res
+		
+		})
+		resolve(response)	
+	}))
+ })
 }
 module.exports.getcontext = getcontext;
 
@@ -626,18 +623,8 @@ module.exports.releasecontext = releasecontext;
 
 function invokebycontext(context, id, version, args, timeout, channelId) {
 
-	//console.log( inMemoryChannelObjects)
-	var channel, channelConfig
-	var configPath = "../../benchmark/fabric/channel-scalability/fabric.json"
-	caliper_util.init(configPath);
-	var config = require(configPath);
-	var context1 = config.fabric.context;
-	var channelPos = parseInt(channelId.substring(9, channelId.length));
-	var channelArray = context1['open'];
-	channelConfig = caliper_util.getChannel(channelArray[channelPos - 1]);
-
-	//return getcontext(channelConfig).then((response) => {
 		var response = inMemoryChannelObjects[channelId]
+	
 		var channel = response.channel
 		var userOrg = response.org;
 		var client = response.client;
