@@ -38,9 +38,7 @@ module.exports.init = function(blockchain, context, args, counter) {
 }
 
 module.exports.run = function() {
-
     init++;
-    console.log(payload[init-1]["args"])
     return bc.queryState(contx, payload[init-1]["chaincodeid"], 'v0', payload[init-1]["args"], 120);
 }
 
