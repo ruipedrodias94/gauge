@@ -43,7 +43,7 @@
 		
 			{
 				"id": "read-write-set",
-				"path": "contract/fabric/Read-Write-Set",
+				"path": "contract/fabric/Read-Write-set",
 				"version": "v0",
 				"channel": "mychannel"
 			}
