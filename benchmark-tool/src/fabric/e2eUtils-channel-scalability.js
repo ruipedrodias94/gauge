@@ -42,6 +42,8 @@ var the_user = null;
 var recievedBlocks = [];
 var targets = [];
 var inMemoryChannelObjects = []
+var evhub = require('./eventHub.js');
+var fabricVersion ;
 
 var fabricConfigPath = "../../benchmark/fabric/channel-scalability/fabric.json"
 
@@ -265,14 +267,11 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade, t) {
 		// an event listener can only register with a peer in its own org
 		logger.debug(' create new eventhub %s', ORGS[userOrg]['peer1'].events);
 		let data = fs.readFileSync(path.join(__dirname, rootPath, ORGS[userOrg]['peer1']['tls_cacerts']));
-		let eh = client.newEventHub();
-		eh.setPeerAddr(
-			ORGS[userOrg]['peer1'].events,
-			{
-				pem: Buffer.from(data).toString(),
-				'ssl-target-name-override': ORGS[userOrg]['peer1']['server-hostname']
-			}
-		);
+
+		var eventHub = new evhub(fabricVersion,ORGS[userOrg]['peer1'].events,ORGS[userOrg]['peer1'].requests,data,ORGS[userOrg]['peer1']['server-hostname']);
+
+		let eh = eventHub.getEvents(client,channel);
+
 		eh.connect();
 		eventhubs.push(eh);
 
@@ -630,9 +629,11 @@ function invokebycontext(context, id, version, args, timeout, channelId) {
 		var client = response.client;
 		var eventhubs = response.eventhubs;
 		var time0 = new Date().getTime() / 1000;
-		var tx_id = client.newTransactionID(response.submitter);
+		const txIdObject = context.client.newTransactionID();
+		const tx_id = txIdObject.getTransactionID().toString();
+		
 		var invoke_status = {
-			id: tx_id.getTransactionID(),
+			id: tx_id,
 			status: 'created',
 			time_create: new Date().getTime() / 1000,
 			time_valid: 0,
@@ -651,7 +652,7 @@ function invokebycontext(context, id, version, args, timeout, channelId) {
 			chaincodeId: id,
 			fcn: f,
 			args: args,
-			txId: tx_id,
+			txId: txIdObject,
 		};
 
 		return channel.sendTransactionProposal(request)
@@ -689,7 +690,7 @@ function invokebycontext(context, id, version, args, timeout, channelId) {
 						proposal: proposal,
 					};
 
-					var deployId = tx_id.getTransactionID();
+					var deployId = txIdObject.getTransactionID();
 
 
 					var orderer_response;

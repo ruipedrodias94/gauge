@@ -28,7 +28,6 @@ var path = require('path');
 var fs = require('fs');
 
 var Client = require('fabric-client');
-var EventHub = require('fabric-client/lib/EventHub.js')
 
 var testUtil = require('./util.js');
 
@@ -36,7 +35,6 @@ var the_user = null;
 var tx_id = null;
 var rootpath = '../..'
 var ORGS;
-var allEventhubs = [];
 
 module.exports.run = function (config_path) {
 	Client.addConfigFile(config_path);
@@ -48,20 +46,6 @@ module.exports.run = function (config_path) {
 	ORGS = Client.getConfigSetting('fabric').network;
 	return new Promise(function (resolve, reject) {
 		test('\n\n***** join channel *****\n\n', function (t) {
-			// override t.end function so it'll always disconnect the event hub
-			t.end = ((context, ehs, f) => {
-				return function () {
-					for (var key in ehs) {
-						var eventhub = ehs[key];
-						if (eventhub && eventhub.isconnected()) {
-							logger.debug('Disconnecting the event hub');
-							eventhub.disconnect();
-						}
-					}
-
-					f.apply(context, arguments);
-				};
-			})(t, allEventhubs, t.end);
 
 			return channels.reduce((prev, channel) => {
 				return prev.then(() => {
@@ -95,7 +79,7 @@ function joinChannel(org, channelName, t) {
 	var channel = client.newChannel(channelName);
 
 	var orgName = ORGS[org].name;
-	var targets = [], eventhubs = [];
+	var targets = [];
 
 	var caRootsPath = ORGS.orderer.tls_cacerts;
 	let data = fs.readFileSync(path.join(__dirname, rootpath, caRootsPath));
@@ -147,46 +131,10 @@ function joinChannel(org, channelName, t) {
 						)
 					);
 
-					let eh = new EventHub(client);  //client.newEventHub();
-					eh.setPeerAddr(
-						ORGS[org][key].events,
-						{
-							pem: Buffer.from(data).toString(),
-							'ssl-target-name-override': ORGS[org][key]['server-hostname']
-						}
-					);
-					eh.connect();
-					eventhubs.push(eh);
-					allEventhubs.push(eh);
 				}
 			}
 		}
 
-		var eventPromises = [];
-		eventhubs.forEach((eh) => {
-			let txPromise = new Promise((resolve, reject) => {
-				let handle = setTimeout(reject, 30000);
-
-				eh.registerBlockEvent((block) => {
-					clearTimeout(handle);
-
-					// in real-world situations, a peer may have more than one channel so
-					// we must check that this block came from the channel we asked the peer to join
-					if (block.data.data.length === 1) {
-						// Config block must only contain one transaction
-						var channel_header = block.data.data[0].payload.header.channel_header;
-						if (channel_header.channel_id === channelName) {
-							resolve();
-						}
-						else {
-							reject(new Error('invalid channel name'));
-						}
-					}
-				});
-			});
-
-			eventPromises.push(txPromise);
-		});
 		tx_id = client.newTransactionID();
 		let request = {
 			targets: targets,
@@ -194,7 +142,7 @@ function joinChannel(org, channelName, t) {
 			txId: tx_id
 		};
 		let sendPromise = channel.joinChannel(request);
-		return Promise.all([sendPromise].concat(eventPromises));
+		return Promise.all([sendPromise]);
 	})
 		.then((results) => {
 			if (results[0] && results[0][0] && results[0][0].response && results[0][0].response.status == 200) {

@@ -15,6 +15,8 @@ const Promise = require('promise');
 var testUtil = require('../src/fabric/util.js');
 const logger = require('../src/comm/util');
 const rootPath = "../"
+var ORGS;
+var evhub = require('../src/fabric/eventHub.js');
 
 class FabricListener {
     constructor(kafka_config, client_kafka, producer, configPath) {
@@ -24,6 +26,7 @@ class FabricListener {
         this.testUtil.init(path.join(path.dirname(configPath), args.config))
         this.peerEventObject = {}
         this.peerEventObject.eventUrl = fabricConfig.fabric.network.org1.peer1.events;
+        this.peerEventObject.requesturl = fabricConfig.fabric.network.org1.peer1.requests;
         let tlsCert = fs.readFileSync(path.join(__dirname, rootPath, fabricConfig.fabric.network.org1.peer1['tls_cacerts']))
         this.peerEventObject.eventTlsca = tlsCert
         this.peerEventObject.eventServerHostName = fabricConfig.fabric.network.org1.peer1['server-hostname'];
@@ -33,6 +36,8 @@ class FabricListener {
         this.client_kafka = client_kafka
         this.producer = producer
         this.kafka_config = kafka_config
+        this.channel_name = fabricConfig.fabric.channel[0].name
+        this.fabricVersion = fabricConfig.fabric.fabricVersion
        
     }
 
@@ -51,23 +56,63 @@ class FabricListener {
             }).then((admin) => {
 
                 self.client._userContext = admin
-                let eh = self.client.newEventHub();
-                eh.setPeerAddr(
-                    self.peerEventObject.eventUrl,
-                    {
-                        pem: Buffer.from(self.peerEventObject.eventTlsca).toString(),
-                        'ssl-target-name-override': self.peerEventObject.eventServerHostName,
-                        'request-timeout': 12000000,
-                        "grpc.max_receive_message_length": -1
-                    }
+
+                var channel = self.client.newChannel(self.channel_name);
+                ORGS = Client.getConfigSetting('fabric').network;
+
+                var caRootsPath = ORGS.orderer.tls_cacerts;
+                let data = fs.readFileSync(path.join(__dirname, rootPath, caRootsPath));
+                let caroots = Buffer.from(data).toString();
+
+                channel.addOrderer(
+                    self.client.newOrderer(
+                        ORGS.orderer.url,
+                        {
+                            'pem': caroots,
+                            'ssl-target-name-override': ORGS.orderer['server-hostname']
+                        }
+                    )
                 );
-                eh.connect();
-                eh.registerBlockEvent((block) => {
+
+                for (let org in ORGS) {
+                    if (org.indexOf('org') === 0) {
+                        for (let key in ORGS[org]) {
+                            if (key.indexOf('peer') === 0) {
+                                let data = fs.readFileSync(path.join(__dirname, rootPath, ORGS[org][key]['tls_cacerts']));
+                                let peer = self.client.newPeer(
+                                    ORGS[org][key].requests,
+                                    {
+                                        pem: Buffer.from(data).toString(),
+                                        'ssl-target-name-override': ORGS[org][key]['server-hostname']
+                                    }
+                                );
+                                channel.addPeer(peer);
+                                }
+                            }
+                        }
+                    }
+
+                    var eventHub = new evhub(self.fabricVersion,self.peerEventObject.eventUrl,self.peerEventObject.requesturl,self.peerEventObject.eventTlsca,self.peerEventObject.eventServerHostName);
+
+                    if(self.peerEventObject.eventUrl == null || self.peerEventObject.eventUrl == ""){
+                        logger.error("Event url not defined")
+                    }
+
+                    let eh = eventHub.getEvents(self.client,channel);
+
+                    eh.connect();
+                    eh.registerBlockEvent((block) => {
 
                     var event_data = {}
                     event_data.validTime = new Date().getTime() / 1000
                     event_data.block = block
-                    logger.info("Received Block No", block.header.number, "at", event_data.validTime)
+
+                    if(self.fabricVersion <= '1.2') {
+                        logger.info("Received Block No", block.header.number, "at", event_data.validTime)
+                    }else if(self.fabricVersion >= '1.3') {
+                        logger.info("Received Block No", block.number, "at", event_data.validTime)
+                    }
+                    
                     var payload = [{
                         topic: self.kafka_config.topic,
                         messages: JSON.stringify(event_data),

@@ -23,6 +23,8 @@ var channelName = Client.getConfigSetting('fabric').channel[0].name;
 var chaincodes = Client.getConfigSetting('fabric').chaincodes;
 var client  = new Client();
 var channel = client.newChannel(channelName);
+var evhub = require('../../../src/fabric/eventHub.js');
+var fabricVersion = Client.getConfigSetting('fabric').fabricVersion;
 
 Client.setConfigSetting('request-timeout', 200000000);
 
@@ -56,17 +58,11 @@ Client.newDefaultKeyValueStore({path:"./hfc/hfc-test-kvs_peerOrg2"}).then((store
 }).then((admin) => {
 
 	logger.info("successfully enrolled admin!!")
-	eh = client.newEventHub();				
-	eh.setPeerAddr(
-		ORGS["org1"].peer1.events,
-		{
-			'request-timeout': 200000000,
-			'pem': Buffer.from(fs.readFileSync(path.join(__dirname, rootPath, ORGS["org1"].peer1.tls_cacerts))).toString(),
-			'ssl-target-name-override':ORGS["org1"].peer1["server-hostname"],
-			"grpcs.max_receive_message_length": -1,
-			"grpcs.max_send_message_length":-1
-		}
-	);
+
+	var eventHub = new evhub(fabricVersion,ORGS["org1"].peer1.events,ORGS["org1"].peer1.requests,fs.readFileSync(path.join(__dirname, rootPath, ORGS["org1"].peer1.tls_cacerts)),ORGS["org1"].peer1["server-hostname"]);
+
+	eh = eventHub.getEvents(client,channel);
+	
 	eh.connect();								
 	return channel.initialize();
 	

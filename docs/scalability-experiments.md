@@ -6,7 +6,7 @@ In this experiment, we study how the number of chaincodes deployed affect the th
 
 #### STEPS
  
-   * Set up the basic hyperledger fabric v1.1 network with 2 orgs (2 peers each) and a solo orderer. [Click here](./fabric-network-setup.md) to learn about the setup.
+   * Set up the basic hyperledger fabric v1.x network with 2 orgs (2 peers each) and a solo orderer. [Click here](./fabric-network-setup.md) to learn about the setup.
    * Set up the kafka MQ cluster on a different machine.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script. The deployment script will deploy 10 chaincodes by default.
    * `cd benchmark-tool/benchmark/fabric/chaincode-scalability`
@@ -19,12 +19,12 @@ In this experiment, we study how the number of chaincodes deployed affect the th
     
      ```
    
-### Channel Scalability
+### Channel Scalability - Supported upto v1.2
 In this experiment, we will create `n` channels and deploy one chaincode in each channel. The experiment will then make one transaction to each chaincode which can be configured in the `config-channel-scalability.json`
 
 #### STEPS
 
-   * Set up the basic hyperledger fabric v1.1 network with 2 orgs (2 peers each) and a solo orderer. [Click here](./fabric-network-setup.md) to learn about the setup.
+   * Set up the basic hyperledger fabric v1.x network with 2 orgs (2 peers each) and a solo orderer. [Click here](./fabric-network-setup.md) to learn about the setup.
    * Set up the kafka MQ cluster on a different machine.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script. The deployment script will create 10 channels and deploy 10 chaincodes.
    * `cd benchmark-tool/benchmark/fabric/channel-scalability`
@@ -42,7 +42,7 @@ In this experiment, we will expand the network with `n` Organizations.
 
 #### STEPS
 
-   * Set up the hyperledger fabric v1.1 network with n orgs (1 peer each) and a solo orderer. [Click here](./scaling-fabric-network-setup.md) to learn about the setup. If the network already exists then skip this step.
+   * Set up the hyperledger fabric v1.x network with n orgs (1 peer each) and a solo orderer. [Click here](./scaling-fabric-network-setup.md) to learn about the setup. If the network already exists then skip this step.
    * Set up the kafka MQ cluster on a different machine.
    * Run the deployment script:
       * Place the crypto materials at deployment-script/network/fabric/simplenetwork directory.

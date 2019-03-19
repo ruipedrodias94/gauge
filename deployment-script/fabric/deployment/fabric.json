@@ -1,7 +1,8 @@
 {
-	"fabric": {
-		"cryptodir": "network/fabric/simplenetwork/crypto-config",
-		"network": {
+  "fabric": {
+    "cryptodir": "network/fabric/simplenetwork/crypto-config",
+		"fabricVersion": "1.4",
+    "network": {
 			"orderer": {
 				"url": "grpc://localhost:7050",
 				"mspid": "OrdererMSP",
@@ -58,16 +59,13 @@
 				}
 			}
 		},
-		"channel": [
-			{
-				"name": "mychannel",
-				"config": "network/fabric/simplenetwork/mychannel.tx",
-				"organizations": [
-					"org1",
-					"org2"
-				]
-			}
-		],
+    "channel": [
+      {
+        "name": "mychannel",
+        "config": "network/fabric/simplenetwork/mychannel.tx",
+        "organizations": ["org1", "org2"]
+      }
+    ],
 		"chaincodes": [
 			{"id": "simple1", "path": "contract/fabric/simple", "version": "v0", "channel": "mychannel"},
 			{"id": "simple2", "path": "contract/fabric/simple", "version": "v0", "channel": "mychannel"},
@@ -80,49 +78,33 @@
 			{"id": "simple9", "path": "contract/fabric/simple", "version": "v0", "channel": "mychannel"},
 			{"id": "simple10", "path": "contract/fabric/simple", "version": "v0", "channel": "mychannel"}
 		],
-		"endorsement-policy": {
-			"identities": [
-				{
-					"role": {
-						"name": "member",
-						"mspId": "Org1MSP"
-					}
-				},
-				{
-					"role": {
-						"name": "member",
-						"mspId": "Org2MSP"
-					}
-				},
-				{
-					"role": {
-						"name": "admin",
-						"mspId": "Org1MSP"
-					}
-				}
-			],
-			"policy": {
-				"1-of": [
-					{
-						"signed-by": 0
-					},
-					{
-						"signed-by": 1
-					}
-				]
-			}
-		},
-		"context": {
-			"open": [
-				
-				"mychannel"
-				
-			],
-			"query": [
-				
-				"mychannel"
-				
-			]
-		}
-	}
+
+    "endorsement-policy": {
+      "identities": [
+        {
+          "role": {
+            "name": "member",
+            "mspId": "Org1MSP"
+          }
+        },
+        {
+          "role": {
+            "name": "member",
+            "mspId": "Org2MSP"
+          }
+        },
+        {
+          "role": {
+            "name": "admin",
+            "mspId": "Org1MSP"
+          }
+        }
+      ],
+      "policy": { "2-of": [{"signed-by": 0}, {"signed-by": 1}]}
+    },
+    "context": {
+      "open": ["mychannel"],
+      "query": ["mychannel"]
+    }
+  }
 }

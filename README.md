@@ -1,6 +1,6 @@
 # Gauge - Performance benchmarking tool for Hyperledger Fabric and Quorum 
 
-This tool is a performance benchmarking tool built for characterizing the performance of Hyperledger Fabric v1.1 platform and Quorum v2.0.0. The benchmarking engine is forked off Caliper (currently <a href="https://github.com/hyperledger-archives/caliper/tree/master/src">Hyperledger Caliper</a>), developed by Huawei Technologies. Tool includes modifications to the Caliper Benchmarking engine to be able to send transactions at high send rates. Modifications to the original Caliper source code are listed [here](./docs/caliper-changes.md).
+This tool is a performance benchmarking tool built for characterizing the performance of Hyperledger Fabric platform(v1.0 - v1.4) and Quorum v2.0.0. The benchmarking engine is forked off Caliper (currently <a href="https://github.com/hyperledger-archives/caliper/tree/master/src">Hyperledger Caliper</a>), developed by Huawei Technologies. Tool includes modifications to the Caliper Benchmarking engine to be able to send transactions at high send rates. Modifications to the original Caliper source code are listed [here](./docs/caliper-changes.md).
 
 This tool comprises of the following tests:
 
@@ -13,7 +13,7 @@ Supported Performance metrics:
 *	Transaction confirmation latency - The round trip time from the client submitting a transaction to the time the client receives an event confirmation from the peer.
 *	Resource consumption on peers (CPU and memory) - Amount of memory and CPU utilized on the peers.
 
-## Hyperledger Fabric v1.1
+## Hyperledger Fabric v1.0 - v1.4
 
 The tool can be used to test for specific Fabric deployments with custom orderer settings and application chaincodes with customized endorsement policies.
 

@@ -7,7 +7,7 @@ Each Fabric transaction contains a read-write set. The read set includes the set
 The R-W set chaincode generates specified number of R-W set inside the invoke function. 
 
 #### Steps
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Set up the kafka MQ cluster on a different machine.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script.
    * Pre-populate the KVS. [Click here](./prepopulate-doc.md) to learn how to pre-populate the Keys using the script provided.
@@ -21,7 +21,7 @@ The R-W set chaincode generates specified number of R-W set inside the invoke fu
 This test measures effect of the size of the key value store of chaincode data on read and write latencies. In this experiment we will deploy the Key-value store chaincode and pre-populate keys in it. After some keys are pre-populated, we will perform read and then write and note the latencies in each case. 
 
 #### Steps
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Set up the kafka MQ cluster on a different machine.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script.
    * Pre-populate the KVS. [Click here](./prepopulate-doc.md) to learn how to pre-populate the Keys using the script provided. 
@@ -34,7 +34,7 @@ This test measures effect of the size of the key value store of chaincode data o
 In these set of experiments we will study the effect of Chaincode payload sizes on the transaction latency. These set of experiments are setup to measure the latencies for both cases. (a) Varying payloads are sent to a chaincode function that uses the payloads as values to be inserted in the chaincode KV store and (b) In addition to updating the KV store, the payload is passed back in an event generated from the chaincode. The payload is passed from the peer to the client listener.
 
 #### Steps
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Set up the kafka MQ cluster on a different machine.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script.
   * cd `benchmark-tool/benchmark/fabric/chaincode-payload-size`. 
@@ -50,7 +50,7 @@ c) Intra-channel Write
 d) Nested calls within a single chaincode
 
 #### Steps : Inter-channel Read
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script. 
    * Pre-populate the KVS. [Click here](./prepopulate-doc.md) to learn how to pre-populate the Keys using the script provided.
    * cd `benchmark-tool/benchmark/fabric/Inter-channel Read`
@@ -58,7 +58,7 @@ d) Nested calls within a single chaincode
    * Change the `config-*.json` files appropriately to run test for desired number of rounds. 
 
 #### Steps : Intra-channel Read
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script. 
    * Pre-populate the KVS. [Click here](./prepopulate-doc.md) to learn how to pre-populate the Keys using the script provided.
    * cd `benchmark-tool/benchmark/fabric/Intra-channel Read`
@@ -66,7 +66,7 @@ d) Nested calls within a single chaincode
    * Change the `config-*.json` files appropriately to run test for desired number of rounds. 
 
 #### Steps : Intra-channel Write
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script.
    * cd `benchmark-tool/benchmark/fabric/Inter-channel Write`. 
    * Run `node simple.js config-intra-CC-write-depth2.json` to run the Write test with depth2.
@@ -75,7 +75,7 @@ d) Nested calls within a single chaincode
    * Change the `config-*.json` files appropriately to run test for desired number of rounds.  
 
 #### Steps : Nested calls within a single chaincode
-   * Set up the basic hyperledger fabric v1.1 network with 1 org (1 peer) and solo orderer.
+   * Set up the basic hyperledger fabric v1.x network with 1 org (1 peer) and solo orderer.
    * Run deployment script to create channel, join channel, install and instantiate chaincode. [Click here](./deployment-doc.md) to see how to run the deployment script.
    * cd `benchmark-tool/benchmark/fabric/Single-chaincode Write`. 
    * Run `node simple.js config-nested-write-depth1.json` to run the Write test with depth1.

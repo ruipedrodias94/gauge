@@ -13,6 +13,7 @@
 var util = require('./util.js');
 var BlockchainInterface = require('../comm/blockchain-interface.js')
 var e2eUtils;
+const parser = require('./parser.js');
 
 class Fabric extends BlockchainInterface {
     constructor(config_path, exptType) {
@@ -74,7 +75,7 @@ class Fabric extends BlockchainInterface {
             return Promise.reject(new Error("No transactions found in the result array"));
         }
 
-        return e2eUtils.getResultConfirmation(bcContext, result);
+        return parser.getResultConfirmation(bcContext, result);
     }
 
     releaseContext(context) {

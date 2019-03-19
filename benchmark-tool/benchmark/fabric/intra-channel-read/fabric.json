@@ -1,6 +1,7 @@
 {
 	"fabric": {
 		"cryptodir": "network/fabric/simplenetwork/crypto-config",
+		"fabricVersion": "1.4",
 		"network": {
 			"orderer": {
 				"url": "grpc://localhost:7050",

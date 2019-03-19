@@ -31,11 +31,14 @@ var ORGS;
 var rootPath = '../..'
 var tx_id = null;
 var the_user = null;
+var evhub = require('./eventHub.js');
+var fabricVersion;
 
 function init(config_path) {
 
 	Client.addConfigFile(config_path);
 	ORGS = Client.getConfigSetting('fabric').network;
+	fabricVersion = Client.getConfigSetting('fabric').fabricVersion;
 
 }
 module.exports.init = init;
@@ -143,7 +146,7 @@ module.exports.installChaincode = installChaincode;
 
 
 function instantiateChaincode(chaincode, endorsement_policy, upgrade, t) {
-	Client.setConfigSetting('request-timeout', 120000);
+	Client.setConfigSetting('request-timeout', 86400000);
 
 	var channel = testUtil.getChannel(chaincode.channel);
 	if (channel === null) {
@@ -226,14 +229,10 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade, t) {
 		// an event listener can only register with a peer in its own org
 		logger.debug(' create new eventhub %s', ORGS[userOrg]['peer1'].events);
 		let data = fs.readFileSync(path.join(__dirname, rootPath, ORGS[userOrg]['peer1']['tls_cacerts']));
-		let eh = client.newEventHub();
-		eh.setPeerAddr(
-			ORGS[userOrg]['peer1'].events,
-			{
-				pem: Buffer.from(data).toString(),
-				'ssl-target-name-override': ORGS[userOrg]['peer1']['server-hostname']
-			}
-		);
+
+		var eventHub = new evhub(fabricVersion,ORGS[userOrg]['peer1'].events,ORGS[userOrg]['peer1'].requests,data,ORGS[userOrg]['peer1']['server-hostname']);
+		let eh = eventHub.getEvents(client,channel);
+
 		eh.connect();
 		eventhubs.push(eh);
 
@@ -253,6 +252,7 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade, t) {
 
 			return channel.sendUpgradeProposal(request);
 		} else {
+
 			let request = buildChaincodeProposal(client, the_user, chaincode, upgrade, transientMap, endorsement_policy);
 			tx_id = request.txId;
 
@@ -446,16 +446,11 @@ function getcontext(channelConfig) {
 
 				// an event listener can only register with the peer in its own org
 				if (org === userOrg) {
-					let eh = client.newEventHub();
-					eh.setPeerAddr(
-						peerInfo.events,
-						{
-							pem: Buffer.from(data).toString(),
-							'ssl-target-name-override': peerInfo['server-hostname'],
-							'request-timeout': 120000
-							//'grpc.http2.keepalive_time' : 15
-						}
-					);
+
+					var eventHub = new evhub(fabricVersion,peerInfo.events,peerInfo.requests,data,peerInfo['server-hostname']);
+
+					let eh = eventHub.getEvents(client,channel);
+
 					eventhubs.push(eh);
 				}
 			}

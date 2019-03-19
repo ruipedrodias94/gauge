@@ -1,6 +1,6 @@
 ## Hyperledger Fabric Network Setup
 
-Installation guide for Hyperledger Fabric v1.1 Network Setup
+Installation guide for Hyperledger Fabric v1.x Network Setup
 
 ## Note
 ``

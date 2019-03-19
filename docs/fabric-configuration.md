@@ -10,6 +10,7 @@ The Fabric configuration is a json file which defines a fabric object with below
 ```json
 {"cryptodir": "network/fabric/simplenetwork/crypto-config"}
 ```
+* **fabricVersion**: defines which fabric version gauge should run against.Supported values are 1.0, 1.1, 1.2, 1.3 and 1.4
 
 * **network**: defines the information of orderers and peers of the Fabric network. Structure your network object based on number of connections a client would make. The key of organization objects and peer objects must start with 'org' and 'peer'. If you are running the benchmarking clients on multiple machines, then only add the details of those organizations with which the client will be communicating.
 ```json
