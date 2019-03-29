@@ -31,15 +31,4 @@ Following tools need to be installed.
     * Run `docker-compose -f docker-compose-kafka.yaml up -d`.
 	
 #### Troubleshooting
-
-### Error 1: 
-``` npm ERR! pkcs11js@1.0.15 install: node-gyp rebuild``` 
-```npm ERR! Exit status 1```
-```npm ERR! ```
-### Solution
-Run `sudo apt-get install build-essential`
-
-### Error 2: 
-``` The gRPC binary module was not installed. This may be fixed by running "npm rebuild ``` 
-### Solution
-Run `npm rebuild`
+Refer [here](./troubleshooting.md).
