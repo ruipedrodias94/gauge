@@ -27,3 +27,6 @@ All predefined benchmarks for fabric can be found in the [benchmarking-tool](../
 
 ## Customize for your application
 #### [Running experiments with custom chaincode](./custom-chaincode.md)
+
+## Troubleshooting
+###Refer [here](./troubleshooting.md).
