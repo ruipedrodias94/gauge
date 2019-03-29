@@ -49,6 +49,7 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_HEAP_OPTS= -Xms1g -Xmx2g
     ports:
       - "9092:9092"
     depends_on:
@@ -73,6 +74,7 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_HEAP_OPTS= -Xms1g -Xmx2g
     ports:
       - "8092:9092"
     depends_on:
@@ -97,6 +99,7 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_HEAP_OPTS= -Xms1g -Xmx2g
     ports:
       - "7092:9092"
     depends_on:
