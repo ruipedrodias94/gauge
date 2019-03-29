@@ -1,3 +1,4 @@
+
 /**
  * Original work 
  * Modifications Copyright 2017 HUAWEI
@@ -39,13 +40,10 @@ var rootPath = '../../'
 var tx_id = null;
 var the_user = null;
 var targets = [];
-var evhub = require('./eventHub.js');
-var fabricVersion ;
 
 function init(config_path) {
 	Client.addConfigFile(config_path);
 	ORGS = Client.getConfigSetting('fabric').network;
-	fabricVersion = Client.getConfigSetting('fabric').fabricVersion;
 }
 module.exports.init = init;
 
@@ -235,11 +233,14 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade, t) {
 		// an event listener can only register with a peer in its own org
 		logger.debug(' create new eventhub %s', ORGS[userOrg]['peer1'].events);
 		let data = fs.readFileSync(path.join(__dirname, rootPath, ORGS[userOrg]['peer1']['tls_cacerts']));
-
-		var eventHub = new evhub(fabricVersion,ORGS[userOrg]['peer1'].events,ORGS[userOrg]['peer1'].requests,data,ORGS[userOrg]['peer1']['server-hostname']);
-
-		let eh = eventHub.getEvents(client,channel);
-
+		let eh = client.newEventHub();
+		eh.setPeerAddr(
+			ORGS[userOrg]['peer1'].events,
+			{
+				pem: Buffer.from(data).toString(),
+				'ssl-target-name-override': ORGS[userOrg]['peer1']['server-hostname']
+			}
+		);
 		eh.connect();
 		eventhubs.push(eh);
 
@@ -476,6 +477,85 @@ function getcontext(channelConfig) {
 module.exports.getcontext = getcontext;
 
 
+
+/**
+ * connect to Kafka, fetch block and confirmation time
+ * @param {*} resultsArray 
+ * @param {*} no_Of_Tx 
+ */
+function getResultConfirmation(resultsArray, no_Of_Tx) {
+
+	return new Promise(function (resolve, reject) {
+
+		var map = []
+		resultsArray.forEach(function (internal_element) {
+			map[internal_element.id] = internal_element
+
+		})
+		var globalArray = []
+		globalArray.push(map)
+		var kafka = require('kafka-node');
+		var Consumer = kafka.Consumer;
+		var client1 = new kafka.KafkaClient({ kafkaHost: kafka_config.broker_urls, requestTimeout: 300000000 });
+
+		var options = {
+			autoCommit: true,
+			fetchMaxWaitMs: 1000,
+			fetchMaxBytes: 4096 * 4096,
+			encoding: 'buffer',
+			groupId: "groupID"+process.pid
+		};
+
+		var topics = [{
+			topic: kafka_config.topic
+
+		}];
+
+		var consumer = new Consumer(client1, topics, options);
+		var finalresult = [];
+		var isTxfound;
+		var pendingCounter = 0
+
+		consumer.on('message', function (message) {
+
+			var buf = new Buffer(message.value); // Read string into a buffer.
+			var data = buf.toString('utf-8')
+			var block = JSON.parse(data).block
+			for (var index = 0; index < block.data.data.length; index++) {
+				var channel_header = block.data.data[index].payload.header.channel_header;
+
+				// serach the globalArray if the Id exists or not. It will be present but in any one of the array in global Array
+				if (globalArray[0][channel_header.tx_id] != undefined || globalArray[0][channel_header.tx_id] != null) {
+
+					var object = globalArray[0][channel_header.tx_id]
+					object.time_valid = JSON.parse(data).validTime;
+					object.status = "success";
+					globalArray[0][channel_header.tx_id] = object
+					pendingCounter++
+					finalresult.push(object)
+				} else {
+
+					// not present // ** no need to handle actually**
+				}
+				if (pendingCounter == no_Of_Tx) {
+					resolve(finalresult)
+				}
+
+			}
+
+		});
+
+
+		consumer.on('error', function (error) {
+
+			logger.error("Error while consuming blocks from MQ", error)
+
+		})
+	})
+}
+
+module.exports.getResultConfirmation = getResultConfirmation;
+
 function releasecontext(context) {
 	if (context.hasOwnProperty('eventhubs')) {
 		for (let key in context.eventhubs) {
@@ -497,11 +577,9 @@ function invokebycontext(context, id, version, args, timeout) {
 	var channel = context.channel;
 	var eventhubs = context.eventhubs;
 	var time0 = new Date().getTime() / 1000;
-	const txIdObject = context.client.newTransactionID();
-	const tx_id = txIdObject.getTransactionID().toString();
-
+	var tx_id = client.newTransactionID(context.submitter);
 	var invoke_status = {
-		id: txIdObject.getTransactionID(),
+		id: tx_id.getTransactionID(),
 		status: 'created',
 		time_create: new Date().getTime() / 1000,
 		time_valid: 0,
@@ -521,7 +599,7 @@ function invokebycontext(context, id, version, args, timeout) {
 		chaincodeId: id,
 		fcn: f,
 		args: args,
-		txId: txIdObject,
+		txId: tx_id,
 	};
 
 	return channel.sendTransactionProposal(request)
@@ -560,7 +638,7 @@ function invokebycontext(context, id, version, args, timeout) {
 					proposal: proposal,
 				};
 
-				var deployId = txIdObject.getTransactionID();
+				var deployId = tx_id.getTransactionID();
 				var orderer_response;
 				return channel.sendTransaction(request)
 					.then((response) => {
@@ -595,11 +673,9 @@ function querybycontext(context, id, version, args) {
 	var client = context.client;
 	var channel = context.channel;
 	var eventhubs = context.eventhubs;
-	const txIdObject = context.client.newTransactionID();
-	const tx_id = txIdObject.getTransactionID().toString();
-
+	var tx_id = client.newTransactionID(context.submitter);
 	var invoke_status = {
-		id: tx_id,
+		id: tx_id.getTransactionID(),
 		status: 'created',
 		time_create: new Date().getTime() / 1000,
 		time_valid: 0,
@@ -610,7 +686,7 @@ function querybycontext(context, id, version, args) {
 	var request = {
 		chaincodeId: id,
 		chaincodeVersion: version,
-		txId: txIdObject,
+		txId: tx_id,
 		fcn: f,
 		args: args
 	};
