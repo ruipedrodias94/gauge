@@ -34,9 +34,8 @@ let getResultConfirmation = (resultsArray, no_Of_Tx) => {
             autoCommit: true,
             fetchMaxWaitMs: 1000,
             fetchMaxBytes: 4096 * 4096,
-            encoding: 'buffer'
-            //requestTimeout:300000
-            // groupId: groupID
+            encoding: 'buffer',
+            groupId: "groupID"+process.pid
         };
 
         var topics = [{

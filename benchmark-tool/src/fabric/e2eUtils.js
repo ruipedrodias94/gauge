@@ -176,7 +176,6 @@ function getcontext(channelConfig) {
 }
 module.exports.getcontext = getcontext;
 
-
 function releasecontext(context) {
 	if (context.hasOwnProperty('eventhubs')) {
 		for (let key in context.eventhubs) {
@@ -298,7 +297,6 @@ function querybycontext(context, id, version, args) {
 	var eventhubs = context.eventhubs;
 	const txIdObject = context.client.newTransactionID();
 	const tx_id = txIdObject.getTransactionID().toString();
-
 	var invoke_status = {
 		id: tx_id,
 		status: 'created',
