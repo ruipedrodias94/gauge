@@ -14,7 +14,7 @@ Make sure following tools are installed
     * Run `npm install` to install dependencies locally
 
 ## Steps
-* Place your channel artifact file at `deployment-script/fabric/network/fabric/simplenetwork`.
+* Place your channel artifact file at `network/fabric-v1.x/simplenetwork` depending on the fabric version against which the benchmarks are running.
 * cd `benchmark-tool/benchmark/fabric/<benchmark-name>`. E.g: If you are performing deployment for Write-only experiment then switch to `benchmark-tool/benchmark/fabric/write`
 * Edit the `fabric.json` with correct network related details like URL, MSP path,channel name, channel artifact file path etc. Chaincode name and path is configured properly according to the type of benchmark.
 * copy the `fabric.json` to `deployment-script/fabric/deployment` directory.

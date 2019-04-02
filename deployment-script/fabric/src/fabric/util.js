@@ -40,7 +40,8 @@ var logger = require('fabric-client/lib/utils.js').getLogger('TestUtil');
 
 var channels = [];
 var cryptodir;
-var rootpath = '../..'
+var rootpath = '../../../../'
+var chaincodeRootPath = '../..'
 var ORGS;
 
 module.exports.getChannel = function (name) {
@@ -72,7 +73,7 @@ module.exports.storePathForOrg = function (org) {
 
 // temporarily set $GOPATH to the test fixture folder
 module.exports.setupChaincodeDeploy = function () {
-	process.env.GOPATH = path.join(__dirname, rootpath);
+	process.env.GOPATH = path.join(__dirname, chaincodeRootPath);
 };
 
 // specifically set the values to defaults because they may have been overridden when

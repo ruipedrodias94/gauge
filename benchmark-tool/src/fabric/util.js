@@ -38,7 +38,7 @@ var logger = require('fabric-client/lib/utils.js').getLogger('TestUtil');
 
 var channels = [];
 var cryptodir;
-var rootpath = '../../'
+var rootpath = '../../../'
 var ORGS;
 
 module.exports.getChannel = function (name) {

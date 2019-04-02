@@ -1,19 +1,19 @@
 {
 	"fabric": {
-		"cryptodir": "network/fabric/simplenetwork/crypto-config",
+		"cryptodir": "network/fabric-v1.2/simplenetwork/crypto-config",
 		"fabricVersion": "1.2",
 		"network": {
 			"orderer": {
 				"url": "grpc://localhost:7050",
 				"mspid": "OrdererMSP",
-				"msp": "network/fabric/simplenetwork/crypto-config/ordererOrganizations/example.com/msp/",
+				"msp": "network/fabric-v1.2/simplenetwork/crypto-config/ordererOrganizations/example.com/msp/",
 				"server-hostname": "orderer.example.com",
-				"tls_cacerts": "network/fabric/simplenetwork/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
+				"tls_cacerts": "network/fabric-v1.2/simplenetwork/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
 			},
 			"org1": {
 				"name": "peerOrg1",
 				"mspid": "Org1MSP",
-				"msp": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/msp/",
+				"msp": "network/fabric-v1.2/simplenetwork/crypto-config/peerOrganizations/org1.example.com/msp/",
 				"ca": {
 					"url": "http://localhost:7054",
 					"name": "ca-org1"
@@ -22,13 +22,13 @@
 					"requests": "grpc://localhost:7051",
 					"events": "grpc://localhost:7053",
 					"server-hostname": "peer0.org1.example.com",
-					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+					"tls_cacerts": "network/fabric-v1.2/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
 				},
 				"peer2": {
 					"requests": "grpc://localhost:7057",
 					"events": "grpc://localhost:7059",
 					"server-hostname": "peer1.org1.example.com",
-					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
+					"tls_cacerts": "network/fabric-v1.2/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
 				},
 				"adminCryptoPath": {
 					"certPath": "peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts",
@@ -38,7 +38,7 @@
 			"org2": {
 				"name": "peerOrg2",
 				"mspid": "Org2MSP",
-				"msp": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/msp/",
+				"msp": "network/fabric-v1.2/simplenetwork/crypto-config/peerOrganizations/org2.example.com/msp/",
 				"ca": {
 					"url": "http://localhost:8054",
 					"name": "ca-org2"
@@ -47,13 +47,13 @@
 					"requests": "grpc://localhost:8051",
 					"events": "grpc://localhost:8053",
 					"server-hostname": "peer0.org2.example.com",
-					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+					"tls_cacerts": "network/fabric-v1.2/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
 				},
 				"peer2": {
 					"requests": "grpc://localhost:8057",
 					"events": "grpc://localhost:8059",
 					"server-hostname": "peer1.org2.example.com",
-					"tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
+					"tls_cacerts": "network/fabric-v1.2/simplenetwork/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
 				},
 				"adminCryptoPath": {
 					"certPath": "peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts",
@@ -64,7 +64,7 @@
 		"channel": [
 			{
 				"name": "mychannel101",
-				"config": "network/fabric/simplenetwork/mychannel101.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel101.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -72,7 +72,7 @@
 			},
 			{
 				"name": "mychannel102",
-				"config": "network/fabric/simplenetwork/mychannel102.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel102.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -80,7 +80,7 @@
 			},
 			{
 				"name": "mychannel103",
-				"config": "network/fabric/simplenetwork/mychannel103.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel103.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -88,7 +88,7 @@
 			},
 			{
 				"name": "mychannel104",
-				"config": "network/fabric/simplenetwork/mychannel104.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel104.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -96,7 +96,7 @@
 			},
 			{
 				"name": "mychannel105",
-				"config": "network/fabric/simplenetwork/mychannel105.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel105.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -104,7 +104,7 @@
 			},
 			{
 				"name": "mychannel106",
-				"config": "network/fabric/simplenetwork/mychannel106.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel106.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -112,7 +112,7 @@
 			},
 			{
 				"name": "mychannel107",
-				"config": "network/fabric/simplenetwork/mychannel107.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel107.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -120,7 +120,7 @@
 			},
 			{
 				"name": "mychannel108",
-				"config": "network/fabric/simplenetwork/mychannel108.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel108.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -128,7 +128,7 @@
 			},
 			{
 				"name": "mychannel109",
-				"config": "network/fabric/simplenetwork/mychannel109.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel109.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -136,7 +136,7 @@
 			},
 			{
 				"name": "mychannel110",
-				"config": "network/fabric/simplenetwork/mychannel110.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel110.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -144,7 +144,7 @@
 			},
 			{
 				"name": "mychannel111",
-				"config": "network/fabric/simplenetwork/mychannel111.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel111.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -152,7 +152,7 @@
 			},
 			{
 				"name": "mychannel112",
-				"config": "network/fabric/simplenetwork/mychannel112.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel112.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -160,7 +160,7 @@
 			},
 			{
 				"name": "mychannel113",
-				"config": "network/fabric/simplenetwork/mychannel113.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel113.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -168,7 +168,7 @@
 			},
 			{
 				"name": "mychannel114",
-				"config": "network/fabric/simplenetwork/mychannel114.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel114.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -176,7 +176,7 @@
 			},
 			{
 				"name": "mychannel115",
-				"config": "network/fabric/simplenetwork/mychannel115.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel115.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -184,7 +184,7 @@
 			},
 			{
 				"name": "mychannel116",
-				"config": "network/fabric/simplenetwork/mychannel116.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel116.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -192,7 +192,7 @@
 			},
 			{
 				"name": "mychannel117",
-				"config": "network/fabric/simplenetwork/mychannel117.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel117.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -200,7 +200,7 @@
 			},
 			{
 				"name": "mychannel118",
-				"config": "network/fabric/simplenetwork/mychannel118.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel118.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -208,7 +208,7 @@
 			},
 			{
 				"name": "mychannel119",
-				"config": "network/fabric/simplenetwork/mychannel119.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel119.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -216,7 +216,7 @@
 			},
 			{
 				"name": "mychannel120",
-				"config": "network/fabric/simplenetwork/mychannel120.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel120.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -224,7 +224,7 @@
 			},
 			{
 				"name": "mychannel121",
-				"config": "network/fabric/simplenetwork/mychannel121.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel121.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -232,7 +232,7 @@
 			},
 			{
 				"name": "mychannel122",
-				"config": "network/fabric/simplenetwork/mychannel122.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel122.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -240,7 +240,7 @@
 			},
 			{
 				"name": "mychannel123",
-				"config": "network/fabric/simplenetwork/mychannel123.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel123.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -248,7 +248,7 @@
 			},
 			{
 				"name": "mychannel124",
-				"config": "network/fabric/simplenetwork/mychannel124.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel124.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -256,7 +256,7 @@
 			},
 			{
 				"name": "mychannel125",
-				"config": "network/fabric/simplenetwork/mychannel125.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel125.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -264,7 +264,7 @@
 			},
 			{
 				"name": "mychannel126",
-				"config": "network/fabric/simplenetwork/mychannel126.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel126.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -272,7 +272,7 @@
 			},
 			{
 				"name": "mychannel127",
-				"config": "network/fabric/simplenetwork/mychannel127.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel127.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -280,7 +280,7 @@
 			},
 			{
 				"name": "mychannel128",
-				"config": "network/fabric/simplenetwork/mychannel128.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel128.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -288,7 +288,7 @@
 			},
 			{
 				"name": "mychannel129",
-				"config": "network/fabric/simplenetwork/mychannel129.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel129.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -296,7 +296,7 @@
 			},
 			{
 				"name": "mychannel130",
-				"config": "network/fabric/simplenetwork/mychannel130.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel130.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -304,7 +304,7 @@
 			},
 			{
 				"name": "mychannel131",
-				"config": "network/fabric/simplenetwork/mychannel131.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel131.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -312,7 +312,7 @@
 			},
 			{
 				"name": "mychannel132",
-				"config": "network/fabric/simplenetwork/mychannel132.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel132.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -320,7 +320,7 @@
 			},
 			{
 				"name": "mychannel133",
-				"config": "network/fabric/simplenetwork/mychannel133.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel133.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -328,7 +328,7 @@
 			},
 			{
 				"name": "mychannel134",
-				"config": "network/fabric/simplenetwork/mychannel134.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel134.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -336,7 +336,7 @@
 			},
 			{
 				"name": "mychannel135",
-				"config": "network/fabric/simplenetwork/mychannel135.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel135.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -344,7 +344,7 @@
 			},
 			{
 				"name": "mychannel136",
-				"config": "network/fabric/simplenetwork/mychannel136.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel136.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -352,7 +352,7 @@
 			},
 			{
 				"name": "mychannel137",
-				"config": "network/fabric/simplenetwork/mychannel137.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel137.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -360,7 +360,7 @@
 			},
 			{
 				"name": "mychannel138",
-				"config": "network/fabric/simplenetwork/mychannel138.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel138.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -368,7 +368,7 @@
 			},
 			{
 				"name": "mychannel139",
-				"config": "network/fabric/simplenetwork/mychannel139.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel139.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -376,7 +376,7 @@
 			},
 			{
 				"name": "mychannel140",
-				"config": "network/fabric/simplenetwork/mychannel140.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel140.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -384,7 +384,7 @@
 			},
 			{
 				"name": "mychannel141",
-				"config": "network/fabric/simplenetwork/mychannel141.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel141.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -392,7 +392,7 @@
 			},
 			{
 				"name": "mychannel142",
-				"config": "network/fabric/simplenetwork/mychannel142.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel142.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -400,7 +400,7 @@
 			},
 			{
 				"name": "mychannel143",
-				"config": "network/fabric/simplenetwork/mychannel143.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel143.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -408,7 +408,7 @@
 			},
 			{
 				"name": "mychannel144",
-				"config": "network/fabric/simplenetwork/mychannel144.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel144.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -416,7 +416,7 @@
 			},
 			{
 				"name": "mychannel145",
-				"config": "network/fabric/simplenetwork/mychannel145.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel145.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -424,7 +424,7 @@
 			},
 			{
 				"name": "mychannel146",
-				"config": "network/fabric/simplenetwork/mychannel146.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel146.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -432,7 +432,7 @@
 			},
 			{
 				"name": "mychannel147",
-				"config": "network/fabric/simplenetwork/mychannel147.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel147.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -440,7 +440,7 @@
 			},
 			{
 				"name": "mychannel148",
-				"config": "network/fabric/simplenetwork/mychannel148.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel148.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -448,7 +448,7 @@
 			},
 			{
 				"name": "mychannel149",
-				"config": "network/fabric/simplenetwork/mychannel149.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel149.tx",
 				"organizations": [
 					"org1",
 					"org2"
@@ -456,7 +456,7 @@
 			},
 			{
 				"name": "mychannel150",
-				"config": "network/fabric/simplenetwork/mychannel150.tx",
+				"config": "network/fabric-v1.2/simplenetwork/mychannel150.tx",
 				"organizations": [
 					"org1",
 					"org2"

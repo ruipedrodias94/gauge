@@ -45,7 +45,7 @@ function run(config_path) {
         test('\n\n***** create channels  *****\n\n', function (t) {
             var ORGS = fabric.network;
             var caRootsPath = ORGS.orderer.tls_cacerts;
-            var data = fs.readFileSync(path.join(__dirname, '../..', caRootsPath));
+            var data = fs.readFileSync(path.join(__dirname, '../../../..', caRootsPath));
             var caroots = Buffer.from(data).toString();
             utils.setConfigSetting('key-value-store', 'fabric-client/lib/impl/FileKeyValueStore.js');
 
@@ -79,7 +79,7 @@ function run(config_path) {
                         })
                         .then((admin) => {
                             // use the config update created by the configtx tool
-                            let envelope_bytes = fs.readFileSync(path.join(__dirname, '../..', channel.config));
+                            let envelope_bytes = fs.readFileSync(path.join(__dirname, '../../../..', channel.config));
                             config = client.extractChannelConfig(envelope_bytes);
 
                             // TODO: read from channel config instead of binary tx file

@@ -28,18 +28,6 @@ class BlockchainInterface {
     releaseContext(context) {
         throw new Error('releaseContext is not implemented for this blockchain system');
     }
-
-    invokeSmartContract(context, contractID, contractVer, args, timeout) {
-        throw new Error('invokeSmartContract is not implemented for this blockchain system');
-    }
-
-    queryState(context, contractID, contractVer, key) {
-        throw new Error('queryState is not implemented for this blockchain system');
-    }
-
-    getDefaultTxStats(stats, results) {
-        throw new Error('getDefaultTxStats is not implemented for this blockchain system');
-    }
 }
 
 module.exports = BlockchainInterface;

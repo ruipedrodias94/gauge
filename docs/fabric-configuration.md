@@ -8,7 +8,7 @@ The Fabric configuration is a json file which defines a fabric object with below
 * **cryptodir**: defines a relative path of the <tt>crypto</tt> directory which contains all cryptographic materials. All paths defined in the configuration file are relative paths to the Fabric root directory. The <tt>crypto</tt> directory structure must be identical with the output of Fabric's <tt>cryptogen</tt> tool. The sub-directories names must match organizations' names defined in the <tt>network</tt> element. The certificates and private keys in this directory are used by FabBench to act as the administrator or the member of corresponding organization to interact with the Fabric network, e.g to create channel, join channel, install chaincode, invoke chaincode, etc.      
  
 ```json
-{"cryptodir": "network/fabric/simplenetwork/crypto-config"}
+{"cryptodir": "network/fabric-v1.x/simplenetwork/crypto-config"} : points to the fabric network directory against the version which the benchmarks will be running.
 ```
 * **fabricVersion**: defines which fabric version gauge should run against.Supported values are 1.0, 1.1, 1.2, 1.3 and 1.4
 
@@ -19,14 +19,14 @@ The Fabric configuration is a json file which defines a fabric object with below
     "orderer": {
       "url": "grpcs://localhost:7050",
       "mspid": "OrdererMSP",
-      "msp": "network/fabric/simplenetwork/crypto-config/ordererOrganizations/example.com/msp/",
+      "msp": "network/fabric-v1.x/simplenetwork/crypto-config/ordererOrganizations/example.com/msp/",
       "server-hostname": "orderer.example.com",
-      "tls_cacerts": "network/fabric/simplenetwork/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
+      "tls_cacerts": "network/fabric-v1.x/simplenetwork/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
     },
     "org1": {
       "name": "peerOrg1",
       "mspid": "Org1MSP",
-      "msp": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/msp/",
+      "msp": "network/fabric-v1.x/simplenetwork/crypto-config/peerOrganizations/org1.example.com/msp/",
       "ca": {
         "url": "https://localhost:7054",
         "name": "ca-org1"
@@ -35,13 +35,13 @@ The Fabric configuration is a json file which defines a fabric object with below
         "requests": "grpcs://localhost:7051",
         "events": "grpcs://localhost:7053",
         "server-hostname": "peer0.org1.example.com",
-        "tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+        "tls_cacerts": "network/fabric-v1.x/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
       },
       "peer2": {
         "requests": "grpcs://localhost:7057",
         "events": "grpcs://localhost:7059",
         "server-hostname": "peer1.org1.example.com",
-        "tls_cacerts": "network/fabric/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
+        "tls_cacerts": "network/fabric-v1.x/simplenetwork/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
       },
       "adminCryptoPath": {
 		"certPath":"peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts",
@@ -61,7 +61,7 @@ You can skip the CA url and CA name. The benchmarking tool will not be using the
   "channel": [
     {
       "name": "mychannel",
-      "config": "network/fabric/simplenetwork/mychannel.tx",
+      "config": "network/fabric-v1.x/simplenetwork/mychannel.tx",
       "organizations": ["org1", "org2"]
     }
   ]

@@ -11,7 +11,7 @@ var path = require('path');
 var cmd = process.argv[2];
 var totalKeys = process.argv[3];
 var granularity = parseInt(process.argv[4]);
-const rootPath = "../../../"
+const rootPath = "../../../../"
 var startTime = null;
 var endTime = null
 Client.addConfigFile("fabric.json");

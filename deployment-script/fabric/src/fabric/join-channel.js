@@ -33,7 +33,7 @@ var testUtil = require('./util.js');
 
 var the_user = null;
 var tx_id = null;
-var rootpath = '../..'
+var rootpath = '../../../..'
 var ORGS;
 
 module.exports.run = function (config_path) {

@@ -14,7 +14,7 @@ const path = require('path');
 const Promise = require('promise');
 var testUtil = require('../src/fabric/util.js');
 const logger = require('../src/comm/util');
-const rootPath = "../"
+const rootPath = "../../"
 var ORGS;
 var evhub = require('../src/fabric/eventHub.js');
 
