@@ -194,7 +194,9 @@ function defaultTest(args, clientNum, final) {
                     tps: tpsPerClient,
                     args: args.arguments,
                     cb: args.callback,
-                    config: configPath
+                    config: configPath,
+                    totalTx : testRounds[i][0],
+                    totalSendRate : testRounds[i][1]
                 };
                 for (let key in args.arguments) {
                     if (args.arguments[key] === "*#out") { // from previous cached data
@@ -221,6 +223,13 @@ function defaultTest(args, clientNum, final) {
                     testIdx++;
                     var children = [];  // array of child processes
                     for (let i = 0; i < clientNum; i++) {
+                        if(item.totalTx % clientNum !== 0 && i === clientNum-1){
+                            item.numb = item.totalTx - item.numb*(clientNum - 1);
+                        }
+                            
+                        if(item.totalSendRate % clientNum !== 0 && i === clientNum-1){
+                            item.tps = item.totalSendRate - item.tps*(clientNum - 1);
+                        }
                         children.push(loadProcess(item, i));
                     }
                     return Promise.all(children)
