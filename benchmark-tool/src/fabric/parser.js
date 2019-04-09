@@ -19,8 +19,15 @@ let getResultConfirmation = (resultsArray, no_Of_Tx) => {
     return new Promise(function (resolve, reject) {
 
         var map = []
+        var finalresult = [];
+        var pendingCounter = 0;
         resultsArray.forEach(function (internal_element) {
-            map[internal_element.id] = internal_element
+            if (internal_element.status == 'failed') {
+                finalresult.push(internal_element);
+                pendingCounter++;
+            } else {
+                map[internal_element.id] = internal_element;
+                }
 
         })
         var globalArray = []
@@ -44,9 +51,7 @@ let getResultConfirmation = (resultsArray, no_Of_Tx) => {
         }];
 
         var consumer = new Consumer(client1, topics, options);
-        var finalresult = [];
         var isTxfound;
-        var pendingCounter = 0
 
         consumer.on('message', function (message) {
 

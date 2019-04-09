@@ -285,6 +285,8 @@ function invokebycontext(context, id, version, args, timeout) {
 			// logger.error('Invoke chaincode failed, ' + (err.stack?err.stack:err));
 			/*invoke_status.time_valid = process.uptime();
 			invoke_status.status     = 'failed';*/
+			invoke_status.time_valid = new Date().getTime() / 1000;
+			invoke_status.status = 'failed';
 			return Promise.resolve(invoke_status);
 		});
 };
