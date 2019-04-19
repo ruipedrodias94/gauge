@@ -19,7 +19,7 @@ In this experiment, we study how the number of chaincodes deployed affect the th
     
      ```
    
-### Channel Scalability - Supported upto v1.2
+### Channel Scalability
 In this experiment, we will create `n` channels and deploy one chaincode in each channel. The experiment will then make one transaction to each chaincode which can be configured in the `config-channel-scalability.json`
 
 #### STEPS

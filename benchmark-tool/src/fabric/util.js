@@ -280,3 +280,45 @@ module.exports.getSubmitter = function (client, test, peerOrgAdmin, org) {
 		return getMember('admin', 'adminpw', client, test, userOrg);
 	}
 };
+
+module.exports.getChannelObjects = function(channel_name ,client){
+
+	var channel = client.newChannel(channel_name);
+    ORGS = Client.getConfigSetting('fabric').network;
+	
+	var caRootsPath = ORGS.orderer.tls_cacerts;
+	
+	let data = fs.readFileSync(path.join(__dirname, rootpath, caRootsPath));
+	
+	let caroots = Buffer.from(data).toString();
+			
+	channel.addOrderer(
+		client.newOrderer(
+			ORGS.orderer.url,
+			{
+				'pem': caroots,
+				'ssl-target-name-override': ORGS.orderer['server-hostname']
+			}
+		)
+	);
+
+	for (let org in ORGS) {
+		if (org.indexOf('org') === 0) {
+			for (let key in ORGS[org]) {
+				if (key.indexOf('peer') === 0) {
+					let data = fs.readFileSync(path.join(__dirname, rootpath, ORGS[org][key]['tls_cacerts']));
+					let peer = client.newPeer(
+						ORGS[org][key].requests,
+						{
+							pem: Buffer.from(data).toString(),
+							'ssl-target-name-override': ORGS[org][key]['server-hostname']
+						}
+					);
+					channel.addPeer(peer);
+					}
+				}
+			}
+		}
+
+	return channel;	
+};

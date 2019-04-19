@@ -43,8 +43,6 @@ var recievedBlocks = [];
 var targets = [];
 var inMemoryChannelObjects = []
 var evhub = require('./eventHub.js');
-var fabricVersion ;
-
 var fabricConfigPath = "../../benchmark/fabric/channel-scalability/fabric.json"
 
 function init(config_path) {

@@ -17,6 +17,8 @@ const logger = require('../src/comm/util');
 const rootPath = "../../"
 var ORGS;
 var evhub = require('../src/fabric/eventHub.js');
+const channelObjectArray = [];
+const eventhubs = [];
 
 class FabricListener {
     constructor(kafka_config, client_kafka, producer, configPath) {
@@ -38,7 +40,7 @@ class FabricListener {
         this.kafka_config = kafka_config
         this.channel_name = fabricConfig.fabric.channel[0].name
         this.fabricVersion = fabricConfig.fabric.fabricVersion
-       
+        this.channelsArray = fabricConfig.fabric.channel
     }
 
     getBlocks() {
@@ -57,40 +59,10 @@ class FabricListener {
 
                 self.client._userContext = admin
 
-                var channel = self.client.newChannel(self.channel_name);
-                ORGS = Client.getConfigSetting('fabric').network;
-
-                var caRootsPath = ORGS.orderer.tls_cacerts;
-                let data = fs.readFileSync(path.join(__dirname, rootPath, caRootsPath));
-                let caroots = Buffer.from(data).toString();
-
-                channel.addOrderer(
-                    self.client.newOrderer(
-                        ORGS.orderer.url,
-                        {
-                            'pem': caroots,
-                            'ssl-target-name-override': ORGS.orderer['server-hostname']
-                        }
-                    )
-                );
-
-                for (let org in ORGS) {
-                    if (org.indexOf('org') === 0) {
-                        for (let key in ORGS[org]) {
-                            if (key.indexOf('peer') === 0) {
-                                let data = fs.readFileSync(path.join(__dirname, rootPath, ORGS[org][key]['tls_cacerts']));
-                                let peer = self.client.newPeer(
-                                    ORGS[org][key].requests,
-                                    {
-                                        pem: Buffer.from(data).toString(),
-                                        'ssl-target-name-override': ORGS[org][key]['server-hostname']
-                                    }
-                                );
-                                channel.addPeer(peer);
-                                }
-                            }
-                        }
-                    }
+                for (let i = 0; i < self.channelsArray.length; i++) {
+                    var channel = testUtil.getChannelObjects(self.channelsArray[i].name , self.client)
+                    channelObjectArray.push(channel)
+                }
 
                     var eventHub = new evhub(self.fabricVersion,self.peerEventObject.eventUrl,self.peerEventObject.requesturl,self.peerEventObject.eventTlsca,self.peerEventObject.eventServerHostName);
 
@@ -98,42 +70,51 @@ class FabricListener {
                         logger.error("Event url not defined")
                     }
 
-                    let eh = eventHub.getEvents(self.client,channel);
-
-                    eh.connect();
-                    eh.registerBlockEvent((block) => {
-
-                    var event_data = {}
-                    event_data.validTime = new Date().getTime() / 1000
-                    event_data.block = block
-
-                    if(self.fabricVersion <= '1.2') {
-                        logger.info("Received Block No", block.header.number, "at", event_data.validTime)
-                    }else if(self.fabricVersion >= '1.3') {
-                        logger.info("Received Block No", block.number, "at", event_data.validTime)
-                    }
                     
-                    var payload = [{
-                        topic: self.kafka_config.topic,
-                        messages: JSON.stringify(event_data),
-                        partition: 0,
-                        attributes: 1
-                    }];
+                    for (let j = 0; j < channelObjectArray.length; j++) {     
+    
+                        let eh = eventHub.getEvents(self.client,channelObjectArray[j]);
+                        eventhubs.push(eh);
 
-                    self.producer.send(payload, function (error, result) {
-                        if (error) {
-                            logger.error("Error while publishing block in kafka", error);
-                        } else {
-                            var formattedResult = result[0]
-
-                        }
-                    });
-
-                },
-                    (err) => {
-                        logger.info("Error in chaincode Event listener :", err)
                     }
-                );
+
+                    eventhubs.forEach((eh) => {
+                        eh.connect();
+                        eh.registerBlockEvent((block) => {
+
+                            var event_data = {}
+                            event_data.validTime = new Date().getTime() / 1000
+                            event_data.block = block
+        
+                            if(self.fabricVersion == '1.0') {
+                                logger.info("Received Block No", block.header.number, "at", event_data.validTime)
+                            }else if(self.fabricVersion >= '1.1') {
+                                logger.info("Received Block No", block.number, "at", event_data.validTime)
+                            }
+                            
+                            var payload = [{
+                                topic: self.kafka_config.topic,
+                                messages: JSON.stringify(event_data),
+                                partition: 0,
+                                attributes: 1
+                            }];
+        
+                            self.producer.send(payload, function (error, result) {
+                                if (error) {
+                                    logger.error("Error while publishing block in kafka", error);
+                                } else {
+                                    var formattedResult = result[0]
+        
+                                }
+                            });
+        
+                        },
+                            (err) => {
+                                logger.info("Error in chaincode Event listener :", err)
+                            }
+                        );
+                    });
+                                       
             })
 
         })

@@ -21,12 +21,12 @@ var EventHub = class {
 
         this.eventObj = null;
 
-        if (fabricVersion <= '1.2') {
+        if (fabricVersion == '1.0') {
 
             var eventHub1_0 = require('./fabricEventHubv1.0.js');
             this.eventObj = new eventHub1_0(eventUrl, requestUrl, grpcSettings);
         }
-        else if (fabricVersion >= '1.3') {
+        else if (fabricVersion >= '1.1') {
 
             var eventHub1_1 = require('./fabricEventHubv1.1.js');
             this.eventObj = new eventHub1_1(eventUrl, requestUrl, grpcSettings);
