@@ -16,14 +16,25 @@
  *limitations under the License.
  */
 
+// Versão de pragma Solidity desatualizada
 pragma solidity ^0.4.18;
 contract simple {
+    /**
+        Mappings is another way of declaring data
+        We can think of an Mapping as a Key_Value store.
+        So in this example:
+            .key = string
+            .value = bytes32
+        So, we will store accounts in map. And we will lookup for accounts in map by the string.
+     */
     mapping(string => bytes32) private map;
 
+    // Update map key to account value
     function open(string _key, bytes32 _value) {
-        map[_key]= _value;
+        map[_key] = _value;
     }
 
+    // Return the values added previously 
     function query(string _key) constant returns(bytes32) {
         return map[_key];
     }
